@@ -1002,6 +1002,13 @@ Players = game:GetService("Players")
      speaker.CameraMaxZoomDistance = 150
      speaker.CameraMode = "Classic"
      speaker.Character.Head.Anchored = false
+task.wait(0)
+-- Restore normal state
+connection:Disconnect()
+humanoid.AutoRotate = originalAutoRotate
+humanoid.WalkSpeed = 16
+humanoid.JumpPower = 50
+hrp.CFrame = originalCFrame
 
     end
 
@@ -1055,7 +1062,7 @@ Anim:AdjustSpeed(0)
 
 Anim.TimePosition = startTime
 
-Anim:AdjustSpeed(1.5)
+Anim:AdjustSpeed(0.65)
 
 
     end
