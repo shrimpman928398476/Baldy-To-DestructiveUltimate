@@ -836,7 +836,7 @@ end
 
 local AnimAnim = Instance.new("Animation")
 
-AnimAnim.AnimationId = "rbxassetid://116753755471636"
+AnimAnim.AnimationId = "rbxassetid://107649573628906"
 
 local Anim = Humanoid:LoadAnimation(AnimAnim)
 
@@ -1190,7 +1190,7 @@ end
 
 local AnimAnim = Instance.new("Animation")
 
-AnimAnim.AnimationId = "rbxassetid://116753755471636"
+AnimAnim.AnimationId = "rbxassetid://107649573628906"
 
 local Anim = Humanoid:LoadAnimation(AnimAnim)
 
@@ -1672,4 +1672,5 @@ player.CharacterAdded:Connect(function(newCharacter)
 
 end)
 
+if getgenv().
 
