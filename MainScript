@@ -1308,7 +1308,7 @@ local faceDown = CFrame.Angles(math.rad(-90), 0, 0)
 local connection
 connection = RunService.RenderStepped:Connect(function()
     -- 5 studs above closest player
-    local lockPos = targetHRP.Position + Vector3.new(0, 75, 0)
+    local lockPos = targetHRP.Position + Vector3.new(0, 50, 0)
     
     -- Apply the rotation + locked position
     hrp.CFrame = CFrame.new(lockPos) * faceDown
