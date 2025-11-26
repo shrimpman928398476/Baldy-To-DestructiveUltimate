@@ -1062,7 +1062,7 @@ Anim:AdjustSpeed(0)
 
 Anim.TimePosition = startTime
 
-Anim:AdjustSpeed(0.5)
+Anim:AdjustSpeed(0.55)
 
 
     end
@@ -1331,7 +1331,7 @@ local character = player.Character or player.CharacterAdded:Wait()
 local head = character:WaitForChild("Head")
 
 -- HOW FAR THE CAMERA IS ABOVE THE HEAD
-local distance = 50 -- smaller = closer, bigger = farther
+local distance = 75 -- smaller = closer, bigger = farther
 
 game:GetService("RunService").RenderStepped:Connect(function()
     local headPos = head.Position
