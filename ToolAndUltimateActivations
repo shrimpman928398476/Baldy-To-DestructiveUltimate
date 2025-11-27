@@ -397,7 +397,7 @@ died = true
 end)  end
 
 if getgenv().blitzstrike then
-local SkillName = "BLitz Strike" --[ skills cant have the same name or it will bug, ]
+local SkillName = "Blitz Strike" --[ skills cant have the same name or it will bug, ]
 local CooldownLengh = 5
 local Burning = false -- [ the KJ UFW burning effect ]
 
@@ -992,15 +992,19 @@ end
 end
 
 if getgenv().evening then
-local lighting = game.Lighting
+local Lighting = game:GetService("Lighting")
 
-lighting.TimeOfDay = "18:00:00"
-lighting.ClockTime = 18
-lighting.Brightness = 2
-lighting.Ambient = Color3.fromRGB(80, 60, 100)
-lighting.OutdoorAmbient = Color3.fromRGB(100, 90, 140)
-lighting.FogEnd = 300
-lighting.FogColor = Color3.fromRGB(120, 100, 160)
+-- Evening settings
+Lighting.ClockTime = 18 -- 6 PM
+Lighting.Brightness = 2
+Lighting.Ambient = Color3.fromRGB(100, 80, 70)
+Lighting.OutdoorAmbient = Color3.fromRGB(120, 90, 80)
+Lighting.EnvironmentDiffuseScale = 0.5
+Lighting.EnvironmentSpecularScale = 0.3
+Lighting.FogColor = Color3.fromRGB(200, 140, 120)
+Lighting.FogStart = 50
+Lighting.FogEnd = 300
+
 end
 
 
