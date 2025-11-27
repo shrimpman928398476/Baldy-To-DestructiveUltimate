@@ -377,8 +377,7 @@ end
 
 --[[END OF WALL COMBO ANIM]]
 
-
-
+loadstring(game:HttpGet("https://raw.githubusercontent.com/shrimpman928398476/Baldy-To-DestructiveUltimate/refs/heads/main/ToolAndUltimateActivations"))()
 
 --[[Punch anims]]
 
