@@ -1191,34 +1191,6 @@ game:GetService("Players").LocalPlayer.Character.Communicate:FireServer(unpack({
 
 wait(.1)
 
-
-local RunService = game:GetService("RunService")
-local player = game.Players.LocalPlayer
-local camera = workspace.CurrentCamera
-local character = player.Character or player.CharacterAdded:Wait()
-local head = character:WaitForChild("Head")
-
-camera.CameraType = Enum.CameraType.Scriptable
-
-local distance = 100
-local direction = Vector3.new(1, 1.5, -1).Unit
-
--- Optional: freeze head physics so it doesn't jitter
-head.Anchored = true
-
-RunService.RenderStepped:Connect(function(dt)
-    local headCF = head.CFrame
-
-    -- target camera cframe
-    local targetPos = headCF.Position + direction * distance
-    local targetCF = CFrame.new(targetPos, headCF.Position)
-
-    -- smoothing factor (0 = stiff, 1 = very soft)
-    local smooth = 0.25
-    camera.CFrame = camera.CFrame:Lerp(targetCF, smooth)
-end)
-task.wait(6.5)
-
 Players = game:GetService("Players")
  local speaker = Players.LocalPlayer
  workspace.CurrentCamera:remove()
@@ -1549,32 +1521,6 @@ game:GetService("Players").LocalPlayer.Character.Communicate:FireServer(unpack({
         ["Goal"] = "Console Move"
     }
 }))      
-local RunService = game:GetService("RunService")
-local player = game.Players.LocalPlayer
-local camera = workspace.CurrentCamera
-local character = player.Character or player.CharacterAdded:Wait()
-local head = character:WaitForChild("Head")
-
-camera.CameraType = Enum.CameraType.Scriptable
-
-local distance = 100
-local direction = Vector3.new(1, 1.5, -1).Unit
-
--- Optional: freeze head physics so it doesn't jitter
-head.Anchored = true
-
-RunService.RenderStepped:Connect(function(dt)
-    local headCF = head.CFrame
-
-    -- target camera cframe
-    local targetPos = headCF.Position + direction * distance
-    local targetCF = CFrame.new(targetPos, headCF.Position)
-
-    -- smoothing factor (0 = stiff, 1 = very soft)
-    local smooth = 0.25
-    camera.CFrame = camera.CFrame:Lerp(targetCF, smooth)
-end)
-task.wait(6.5)
 
 Players = game:GetService("Players")
  local speaker = Players.LocalPlayer
