@@ -971,26 +971,34 @@ game:GetService("Players").LocalPlayer.Character.Communicate:FireServer(unpack({
         ["Goal"] = "Console Move"
     }
 }))      
--- Get the player's camera
-local player = game.Players.LocalPlayer
-local camera = game.Workspace.CurrentCamera
 
--- Set the camera's CameraType to Scriptable (this "freezes" the camera)
+
+wait(.1)
+
+
+local player = game.Players.LocalPlayer
+local camera = workspace.CurrentCamera
+
 camera.CameraType = Enum.CameraType.Scriptable
 
--- Get the player's position
-local playerPosition = player.Character.HumanoidRootPart.Position
+local character = player.Character or player.CharacterAdded:Wait()
+local head = character:WaitForChild("Head")
 
--- Set the camera's position above the player (e.g., 50 units above)
-local freezePosition = playerPosition + Vector3.new(90, 150, -100) -- x, y, z coordinates, y is higher than player's position
+-- HOW CLOSE THE CAMERA IS (you can change this anytime)
+local distance = 70 -- smaller = closer, bigger = farther
 
--- Set the camera's CFrame (position + orientation)
-camera.CFrame = CFrame.new(freezePosition)
+-- direction the camera sits at relative to the head
+local direction = Vector3.new(1, 1.5, -1).Unit -- diagonal from above-behind
 
--- Optional: Make the camera look at the player (or another point if desired)
-camera.CFrame = CFrame.new(freezePosition, playerPosition)
+game:GetService("RunService").RenderStepped:Connect(function()
+    local headPos = head.Position
 
+    -- Calculate camera position based on distance
+    local camPos = headPos + direction * distance
 
+    -- Look at the head
+    camera.CFrame = CFrame.new(camPos, headPos)
+end)
 task.wait(6.5)
 
 Players = game:GetService("Players")
@@ -1009,8 +1017,7 @@ connection:Disconnect()
 humanoid.AutoRotate = originalAutoRotate
 humanoid.WalkSpeed = 16
 humanoid.JumpPower = 50
-hrp.CFrame = originalCFrame
-
+hrp.CFrame = originalCFrame 
     end
 
 end
@@ -1257,7 +1264,7 @@ local faceDown = CFrame.Angles(math.rad(-90), 0, 0)
 local connection
 connection = RunService.RenderStepped:Connect(function()
     -- 5 studs above closest player
-    local lockPos = targetHRP.Position + Vector3.new(0, 50, 0)
+    local lockPos = targetHRP.Position + Vector3.new(0, 75, 0)
     
     -- Apply the rotation + locked position
     hrp.CFrame = CFrame.new(lockPos) * faceDown
@@ -1271,26 +1278,29 @@ game:GetService("Players").LocalPlayer.Character.Communicate:FireServer(unpack({
         ["Goal"] = "Console Move"
     }
 }))      
--- Get the player's camera
 local player = game.Players.LocalPlayer
-local camera = game.Workspace.CurrentCamera
+local camera = workspace.CurrentCamera
 
--- Set the camera's CameraType to Scriptable (this "freezes" the camera)
 camera.CameraType = Enum.CameraType.Scriptable
 
--- Get the player's position
-local playerPosition = player.Character.HumanoidRootPart.Position
+local character = player.Character or player.CharacterAdded:Wait()
+local head = character:WaitForChild("Head")
 
--- Set the camera's position above the player (e.g., 50 units above)
-local freezePosition = playerPosition + Vector3.new(90, 150, -100) -- x, y, z coordinates, y is higher than player's position
+-- HOW CLOSE THE CAMERA IS (you can change this anytime)
+local distance = 70 -- smaller = closer, bigger = farther
 
--- Set the camera's CFrame (position + orientation)
-camera.CFrame = CFrame.new(freezePosition)
+-- direction the camera sits at relative to the head
+local direction = Vector3.new(1, 1.5, -1).Unit -- diagonal from above-behind
 
--- Optional: Make the camera look at the player (or another point if desired)
-camera.CFrame = CFrame.new(freezePosition, playerPosition)
+game:GetService("RunService").RenderStepped:Connect(function()
+    local headPos = head.Position
 
+    -- Calculate camera position based on distance
+    local camPos = headPos + direction * distance
 
+    -- Look at the head
+    camera.CFrame = CFrame.new(camPos, headPos)
+end)
 task.wait(6.5)
 
 Players = game:GetService("Players")
