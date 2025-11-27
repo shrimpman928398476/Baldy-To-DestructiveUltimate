@@ -868,7 +868,7 @@ local faceDown = CFrame.Angles(math.rad(180), 0, 0)
 local connection
 connection = RunService.RenderStepped:Connect(function()
     -- 5 studs above closest player
-    local lockPos = targetHRP.Position + Vector3.new(0, 0, 5)
+    local lockPos = targetHRP.Position + Vector3.new(0, 0, 2.5)
     
     -- Apply the rotation + locked position
     hrp.CFrame = CFrame.new(lockPos) * faceDown
@@ -894,11 +894,11 @@ coroutine.wrap(function()
     local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
 
     local normalGravity = Workspace.Gravity
-    local spinSpeed = 10000
+    local spinSpeed = 1000
     local spinDuration = 1.2
     local initialRadius = 0.1
     local finalRadius = 0.1
-    local riseHeight = 5
+    local riseHeight = 0.1
     local riseDuration = 0.1
 
     local function getNearestHumanoid()
