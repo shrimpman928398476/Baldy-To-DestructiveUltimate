@@ -529,26 +529,6 @@ local AnimAnim = Instance.new("Animation")
 
 AnimAnim.AnimationId = "rbxassetid://140164642047188"
 
-local Anim = Humanoid:LoadAnimation(AnimAnim)
-
-
-local startTime = 0
-
-
-Anim:Play()
-
-Anim:AdjustSpeed(0)
-
-Anim.TimePosition = startTime
-
-Anim:AdjustSpeed(1.35)
-
-
-    end
-
-end
-
---[[END OF MOVE 2 ULT ANIM]]
 
 loadstring(game:HttpGet("https://raw.githubusercontent.com/shrimpman928398476/Baldy-To-DestructiveUltimate/refs/heads/main/ToolAndUltimateActivations"))()
 
