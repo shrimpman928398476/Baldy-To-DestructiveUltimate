@@ -856,7 +856,7 @@ local targetHRP = target.Character.HumanoidRootPart
 local originalCFrame = hrp.CFrame
 local originalAutoRotate = humanoid.AutoRotate
 
--- Disable rotation systems
+w-- Disable rotation systems
 humanoid.AutoRotate = false
 humanoid.WalkSpeed = 0
 humanoid.JumpPower = 0
@@ -881,75 +881,7 @@ game:GetService("Players").LocalPlayer.Character.Communicate:FireServer(unpack({
         ["Tool"] = game:GetService("Players").LocalPlayer.Backpack["Shove"],
         ["Goal"] = "Console Move"
     }
-}))
--- best Cframe fly function
-coroutine.wrap(function()
-    local Players = game:GetService("Players")
-    local player = game.Players.LocalPlayer
-    local RunService = game:GetService("RunService")
-    local Workspace = game:GetService("Workspace")
-    local Camera = Workspace.CurrentCamera
-
-    local character = player.Character or player.CharacterAdded:Wait()
-    local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
-
-    local normalGravity = Workspace.Gravity
-    local spinSpeed = 1000
-    local spinDuration = 1.2
-    local initialRadius = 0.1
-    local finalRadius = 0.1
-    local riseHeight = 0.1
-    local riseDuration = 0.1
-
-    local function getNearestHumanoid()
-        local nearestHumanoid, shortestDistance
-        for _, descendant in ipairs(Workspace.Live:GetDescendants()) do
-            if descendant:IsA("Humanoid") and descendant.Parent.Name ~= game.Players.LocalPlayer.Character.Name then
-                local humanoidRoot = descendant.Parent:FindFirstChild("HumanoidRootPart")
-                if humanoidRoot then
-                    local distance = (humanoidRootPart.Position - humanoidRoot.Position).Magnitude
-                    if not nearestHumanoid or distance < shortestDistance then
-                        nearestHumanoid, shortestDistance = humanoidRoot, distance
-                    end
-                end
-            end
-        end
-        return nearestHumanoid
-    end
-
-    local function spinAndRise()
-        Workspace.Gravity = 0
-
-        local startTime = tick()
-        local originalPosition = humanoidRootPart.Position
-        local nearestHumanoid = getNearestHumanoid()
-
-        while tick() - startTime < spinDuration do
-            local elapsedTime = tick() - startTime
-            local angle = math.rad(spinSpeed) * elapsedTime
-            local progress = elapsedTime / spinDuration
-
-            local currentRadius = initialRadius + (finalRadius - initialRadius) * progress
-            local xOffset, zOffset = math.cos(angle) * currentRadius, math.sin(angle) * currentRadius
-            local riseAmount = math.min(riseHeight * elapsedTime / riseDuration, riseHeight)
-
-            local newPosition = originalPosition + Vector3.new(xOffset, riseAmount, zOffset)
-            if nearestHumanoid then
-                humanoidRootPart.CFrame = CFrame.new(newPosition, nearestHumanoid.Position)
-            else
-                humanoidRootPart.Position = newPosition
-            end
-
-            RunService.Stepped:Wait()
-        end
-
-       
-        Workspace.Gravity = normalGravity
-    end
-
-    spinAndRise()
-end)()
-
+wait(.1)
 -- Restore normal state
 connection:Disconnect()
 humanoid.AutoRotate = originalAutoRotate
