@@ -881,7 +881,7 @@ game:GetService("Players").LocalPlayer.Character.Communicate:FireServer(unpack({
         ["Tool"] = game:GetService("Players").LocalPlayer.Backpack["Shove"],
         ["Goal"] = "Console Move"
     }
-wait(.1)
+wait(1.1)
 -- Restore normal state
 connection:Disconnect()
 humanoid.AutoRotate = originalAutoRotate
