@@ -607,7 +607,7 @@ local textLabel = magicHealth:FindFirstChild("TextLabel")
                 playerGui.Bar.MagicHealth.Health.Glow.Image = "rbxassetid://17136251821"
 	                playerGui.Bar.MagicHealth.TextLabel.Font = Enum.Font.Merriweather
 	                playerGui.Bar.MagicHealth.TextLabel.TextLabel.Font = Enum.Font.Merriweather
-	                playerGui.Bar.MagicHealth.TextLabel.TextSize = 26
+	                playerGui.Bar.MagicHealth.TextLabel.TextSize = 26.1
 	                playerGui.Bar.MagicHealth.TextLabel.TextLabel.TextSize = 26
             end
         end
