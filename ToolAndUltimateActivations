@@ -396,127 +396,645 @@ game.Players.LocalPlayer.Character.Humanoid.Died:Connect(function()
 died = true
 end)  end
 
-if getgenv().freakymode then
+if getgenv().blitzstrike then
+local SkillName = "BLitz Strike" --[ skills cant have the same name or it will bug, ]
+local CooldownLengh = 5
+local Burning = false -- [ the KJ UFW burning effect ]
+
+local Activated = function()
 
 local Players = game:GetService("Players")
-local player = Players.LocalPlayer
-local playerGui = player:WaitForChild("PlayerGui")
-local function waitForGui()
-local bar = playerGui:FindFirstChild("Bar")
- 	if bar then 
-local magicHealth = bar:FindFirstChild("MagicHealth")
-	if magicHealth then
-local textLabel = magicHealth:FindFirstChild("TextLabel")
-	if textLabel then
-                textLabel.Text = "CALAMATIC 6 STAGES"
-	                playerGui.Bar.MagicHealth.Health.Bar.Bar.ImageColor3 = Color3.fromRGB(255, 255, 255)
-	                game:GetService("TweenService"):Create(playerGui.Bar.MagicHealth.Health.Bar.Bar, TweenInfo.new(5, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut, -1, true), {ImageColor3 = Color3.fromRGB(255, 255, 255)}):Play()
-                playerGui.Bar.MagicHealth.Health.Bar.Bar.Image = "rbxassetid://17136251960"
-                playerGui.Bar.MagicHealth.Health.Glow.Image = "rbxassetid://17136251821"
-	                playerGui.Bar.MagicHealth.TextLabel.Font = Enum.Font.Merriweather
-	                playerGui.Bar.MagicHealth.TextLabel.TextLabel.Font = Enum.Font.Merriweather
-	                playerGui.Bar.MagicHealth.TextLabel.TextSize = 26
-	                playerGui.Bar.MagicHealth.TextLabel.TextLabel.TextSize = 26
+local localPlayer = Players.LocalPlayer
+
+local function getClosestPlayer()
+    local character = localPlayer.Character or localPlayer.CharacterAdded:Wait()
+    local root = character:WaitForChild("HumanoidRootPart")
+
+    local closestDistance = math.huge
+    local closestPlayer = nil
+
+    for _, player in pairs(Players:GetPlayers()) do
+        if player ~= localPlayer and player.Character then
+            local otherRoot = player.Character:FindFirstChild("HumanoidRootPart")
+            if otherRoot then
+                local distance = (root.Position - otherRoot.Position).Magnitude
+                if distance < closestDistance then
+                    closestDistance = distance
+                    closestPlayer = player
+                end
             end
         end
     end
+
+    return closestPlayer
 end
 
-playerGui.DescendantAdded:Connect(findGuiAndSetText)
-waitForGui()
+task.wait(0.1) -- small delay so characters load
+
+local target = getClosestPlayer()
+if target and target.Character then
+    local targetRoot = target.Character:FindFirstChild("HumanoidRootPart")
+    if targetRoot then
+        localPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = targetRoot.CFrame
+        print("Teleported to closest player:", target.Name)
+    end
+end
+    local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+
+local player = Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+local hrp = character:WaitForChild("HumanoidRootPart")
+
+-- Function: find closest player
+local function getClosestPlayer()
+    local closest = nil
+    local shortest = math.huge
+    
+    for _, plr in ipairs(Players:GetPlayers()) do
+        if plr ~= player and plr.Character and plr.Character:FindFirstChild("HumanoidRootPart") then
+            local dist = (plr.Character.HumanoidRootPart.Position - hrp.Position).Magnitude
+            if dist < shortest then
+                closest = plr
+                shortest = dist
+            end
+        end
+    end
+
+    return closest
+end
+
+-- Begin action -------------------------------------------------------
+
+local target = getClosestPlayer()
+if not target then return end
+
+local targetHRP = target.Character.HumanoidRootPart
+
+-- Store original states
+local originalCFrame = hrp.CFrame
+local originalAutoRotate = humanoid.AutoRotate
+
+-- Disable rotation systems
+humanoid.AutoRotate = false
+humanoid.WalkSpeed = 0
+humanoid.JumpPower = 0
+
+-- Face down (180 degrees on X)
+local faceDown = CFrame.Angles(math.rad(-90), 0, 0)
+
+-- KEEP POSITION LOCKED FOR 1 SECOND
+local connection
+connection = RunService.RenderStepped:Connect(function()
+    -- 5 studs above closest player
+    local lockPos = targetHRP.Position + Vector3.new(0, 4.75, 0)
+    
+    -- Apply the rotation + locked position
+    hrp.CFrame = CFrame.new(lockPos) * faceDown
+    
+    -- Zero angular rotation
+    hrp.AssemblyAngularVelocity = Vector3.zero
+end)
+game:GetService("Players").LocalPlayer.Character.Communicate:FireServer(unpack({
+    [1] = {
+        ["Tool"] = game:GetService("Players").LocalPlayer.Backpack["Shove"],
+        ["Goal"] = "Console Move"
+    }
+}))
+task.wait(1.2)
+
+-- Restore normal state
+connection:Disconnect()
+humanoid.AutoRotate = originalAutoRotate
+humanoid.WalkSpeed = 16
+humanoid.JumpPower = 50
+hrp.CFrame = originalCFrame
+
+end
+
+-- [[ THE CODE, MODIFY IF YOU WANT. ]]
+local SkillTemplate = Instance.new("Tool")
+SkillTemplate.Name = SkillName
+SkillTemplate.RequiresHandle = false
+SkillTemplate.ManualActivationOnly = false
+SkillTemplate.CanBeDropped = false
+SkillTemplate:SetAttribute("Regged", false)
+SkillTemplate:SetAttribute("Skill", true)
+SkillTemplate.Parent = game.Players.LocalPlayer.Backpack
+local ks = "5"
+local OnCooldown = false
+local cooldownFunction = function()
+OnCooldown = true
+local cd = game:GetService("Players").LocalPlayer.PlayerGui.Hotbar.Backpack.LocalScript.Cooldown:Clone()
+for _, slot in pairs(game:GetService("Players").LocalPlayer.PlayerGui.Hotbar.Backpack.Hotbar:GetDescendants()) do
+    if slot:IsA("TextLabel") and slot.Name == "ToolName" and slot.Text == SkillName then
+	ks = "" .. slot.Parent.Parent.Name
+cd.Parent = slot.Parent
+local cdTween = game:GetService("TweenService"):Create(cd, TweenInfo.new(CooldownLengh), {Size = UDim2.new(1, 0, -0.12, 0)})
+cdTween:Play()
+cdTween.Completed:Connect(function()
+OnCooldown = false
+cd:Destroy()
+slot.Parent.BackgroundColor3 = Color3.fromRGB(26, 125, 255)
+game:GetService("TweenService"):Create(slot.Parent, TweenInfo.new(1), {BackgroundColor3 = Color3.fromRGB(31, 31, 31)}):Play()
+end)
+    end
+end
+end
+
+local cd = game:GetService("Players").LocalPlayer.PlayerGui.Hotbar.Backpack.LocalScript.Cooldown:Clone()
+for _, slot in pairs(game:GetService("Players").LocalPlayer.PlayerGui.Hotbar.Backpack.Hotbar:GetDescendants()) do
+    if slot:IsA("TextLabel") and slot.Name == "ToolName" and slot.Text == SkillName then
+	if Burning then
+	local fireLiterally = game:GetService("Players").LocalPlayer.PlayerGui.Hotbar.Backpack.LocalScript.Flipbook:Clone()
+fireLiterally.Parent = slot.Parent
+fireLiterally.LocalScript.Enabled = true
+end
+	slot.Parent.MouseButton1Click:Connect(function()
+	if not OnCooldown then
+cooldownFunction()
+Activated()
+end
+	end)
+	end
+end
+
+local Kmg = {
+    ["1"] = Enum.KeyCode.One,
+    ["2"] = Enum.KeyCode.Two,
+    ["3"] = Enum.KeyCode.Three,
+    ["4"] = Enum.KeyCode.Four,
+    ["5"] = Enum.KeyCode.Five,
+    ["6"] = Enum.KeyCode.Six,
+    ["7"] = Enum.KeyCode.Seven,
+    ["8"] = Enum.KeyCode.Eight,
+    ["9"] = Enum.KeyCode.Nine,
+    ["0"] = Enum.KeyCode.Zero
+}
+local kb = Kmg[ks]
+
+local uis = game:GetService("UserInputService") local con = uis.InputBegan:Connect(function(input) if input.KeyCode == kb then
+if not OnCooldown and game:GetService("Players").LocalPlayer.PlayerGui.Chat.Frame.ChatBarParentFrame.Frame.BoxFrame.Frame.TextLabel.Visible then
+cooldownFunction()
+Activated()
+end
+ end end) game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Died:Connect(function() con:Disconnect() end)
+
+game.Players.LocalPlayer.Character.Humanoid.Died:Connect(function()
+died = true
+end) end
+
+if getgenv().captions then
+--<<Ultimate Animation>>--
+
+humanoid.AnimationPlayed:Connect(onAnimationPlayed)
+
+
+local animationId = 12447707844
+
+
 local player = game.Players.LocalPlayer
-	local char = player.Character
-	local Humanoid = char.Humanoid
-	local hot = player.PlayerGui:WaitForChild("Hotbar")
-	local hotbar = hot:WaitForChild("Backpack"):WaitForChild("Hotbar")
 
-	local function cloneToolName(slot, text)
-		local toolName = slot.ToolName
-		if not slot:FindFirstChild("CustomName") then
-			toolName.Visible = false
-			local clone = toolName:Clone()
-			clone.Name = "CustomName"
-			clone.Parent = slot
-			clone.Text = text
-			clone.Visible = true
-		elseif slot:FindFirstChild("CustomName") then
-			if slot:FindFirstChild("CustomName").Text ~= text then
-				toolName.Visible = false
-				slot:FindFirstChild("CustomName").Text = text
-			end
-		end
-	end
+local character = player.Character or player.CharacterAdded:Wait()
+
+local humanoid = character:WaitForChild("Humanoid")
 
 
-	local toolNameMap = {
-		["Normal Punch"] = "Forceful Shot",
-		["Consecutive Punches"] = "Calamatic Fisting",
-		["Shove"] = "Baby Oil",
-		["Uppercut"] = "Diddy's Release",
-		
-		["Death Counter"] = "Counter This",
-		["Table Flip"] = "Atomic Oil",
-		["Serious Punch"] = "Orbital Shot",
-		["Omin Directional Punch"] = "Omni Directonal Punch" 
-	}
+local function onAnimationPlayed(animationTrack)
 
-	local function typeText(label, text, delay)
-		delay = delay or 0.05
-		local originalText = text
-		label.Text = ""
-		for i = 1, #originalText do
-			label.Text = string.sub(originalText, 1, i)
-			task.wait(delay)
-		end
-	end
+    if animationTrack.Animation.AnimationId == "rbxassetid://" .. animationId then
+
+local p = game.Players.LocalPlayer
+
+local Humanoid = p.Character:WaitForChild("Humanoid")
 
 
+for _, animTrack in pairs(Humanoid:GetPlayingAnimationTracks()) do
 
-	local typedTools = {}
+    animTrack:Stop()
 
-	local function updateToolNames()
-		for _, slot in ipairs(hotbar:GetChildren()) do
-			if slot:FindFirstChild("Base") and slot.Base:FindFirstChild("ToolName") then
-				local toolNameText = slot.Base.ToolName.Text
-				local newName = toolNameMap[toolNameText]
-				if newName then
-					cloneToolName(slot.Base, newName)
-					if slot.Base:FindFirstChild("CustomName") and not typedTools[newName] then
-						typeText(slot.Base.CustomName, newName, 0.03)
-						typedTools[newName] = true
+end
 
 
-					end
-				end
-			end
-		end
-	end
+local AnimAnim = Instance.new("Animation")
 
-	task.spawn(
-		function()
-			local currentUltIndex = 1
+AnimAnim.AnimationId = "rbxassetid://18897551628"
 
-			while true do
-				typeText(UltLabel, ultTexts[currentUltIndex], 0.001)
-				currentUltIndex = (currentUltIndex % #ultTexts) + 1
+local Anim = Humanoid:LoadAnimation(AnimAnim)
 
-				pcall(
-					function()
-					end
-				)
 
-				updateToolNames()
-				task.wait(10)
-			end
-		end
-	)
+local startTime = 0
 
-	task.spawn(
-		function()
-			while task.wait(1) do
-				updateToolNames()
-			end
-		end) 
+
+Anim:Play()
+
+Anim:AdjustSpeed(0)
+
+Anim.TimePosition = startTime
+
+Anim:AdjustSpeed(0.375)
+local player = game.Players.LocalPlayer
+local playerGui = player:WaitForChild("PlayerGui")
+local s = Instance.new("ScreenGui")
+s.Parent = playerGui
+
+local textLabel = Instance.new("TextLabel")
+textLabel.Parent = s
+textLabel.Position = UDim2.new(0.5, -200, 0.8, -50)
+textLabel.Size = UDim2.new(0, 400, 0, 50)
+textLabel.TextSize = 22.5
+textLabel.TextColor3 = Color3.fromRGB(255, 255, 255) --text color
+textLabel.Font = Enum.Font.Antique -- font here
+textLabel.BackgroundTransparency = 1
+textLabel.Text = "" -- dont change
+textLabel.TextStrokeTransparency = 0
+textLabel.TextStrokeColor3 = Color3.fromRGB(0, 0, 0) --stroke color here
+
+local function type(text)
+    local index = 1
+    while index <= #text do
+        textLabel.Text = string.sub(text, 1, index)
+        index = index + 1
+        wait(0.02)
+    end
+end
+
+local function f()
+    for i = 1, 20 do
+        textLabel.TextTransparency = i / 20
+        wait(0.01)
+    end
+end
+local function fs()
+coroutine.wrap(function()
+textLabel.TextStrokeTransparency = 0.1
+task.wait(0.01)
+textLabel.TextStrokeTransparency = 0.2
+task.wait(0.01)
+textLabel.TextStrokeTransparency = 0.3
+task.wait(0.01)
+textLabel.TextStrokeTransparency = 0.4
+task.wait(0.01)
+textLabel.TextStrokeTransparency = 0.5
+task.wait(0.01)
+textLabel.TextStrokeTransparency = 0.6
+task.wait(0.01)
+textLabel.TextStrokeTransparency = 0.7
+task.wait(0.01)
+textLabel.TextStrokeTransparency = 0.8
+task.wait(0.01)
+textLabel.TextStrokeTransparency = 0.9
+task.wait(0.01)
+textLabel.TextStrokeTransparency = 1
+end)()
+end
+coroutine.wrap(function()
+    local m = "Guess Ill Have To Go Full Out" -- text here
+    type(m)
+    wait(0)
+    fs() -- this for stroke lmao
+    f()
+end)()
+
+    end
+
+end
+
+--<<End of the Ultimate animation>>--
+
+--[[Move 1 ULT]]
+humanoid.AnimationPlayed:Connect(onAnimationPlayed)
+
+local animationId = 12983333733
+
+
+local player = game.Players.LocalPlayer
+
+local character = player.Character or player.CharacterAdded:Wait()
+
+local humanoid = character:WaitForChild("Humanoid")
+
+
+local function onAnimationPlayed(animationTrack)
+
+    if animationTrack.Animation.AnimationId == "rbxassetid://" .. animationId then
+
+
+local p = game.Players.LocalPlayer
+
+local Humanoid = p.Character:WaitForChild("Humanoid")
+
+
+for _, animTrack in pairs(Humanoid:GetPlayingAnimationTracks()) do
+
+    animTrack:Stop()
+
+end
+
+
+local AnimAnim = Instance.new("Animation")
+
+AnimAnim.AnimationId = "rbxassetid://79761806706382"
+
+local Anim = Humanoid:LoadAnimation(AnimAnim)
+
+
+local startTime = 0
+
+
+Anim:Play()
+
+Anim:AdjustSpeed(0)
+
+Anim.TimePosition = startTime
+
+Anim:AdjustSpeed(0.55)
+task.wait(5)
+local player = game.Players.LocalPlayer
+local playerGui = player:WaitForChild("PlayerGui")
+local s = Instance.new("ScreenGui")
+s.Parent = playerGui
+
+local textLabel = Instance.new("TextLabel")
+textLabel.Parent = s
+textLabel.Position = UDim2.new(0.5, -200, 0.8, -50)
+textLabel.Size = UDim2.new(0, 400, 0, 50)
+textLabel.TextSize = 22.5
+textLabel.TextColor3 = Color3.fromRGB(255, 255, 255) --text color
+textLabel.Font = Enum.Font.Antique -- font here
+textLabel.BackgroundTransparency = 1
+textLabel.Text = "" -- dont change
+textLabel.TextStrokeTransparency = 0
+textLabel.TextStrokeColor3 = Color3.fromRGB(0, 0, 0) --stroke color here
+
+local function type(text)
+    local index = 1
+    while index <= #text do
+        textLabel.Text = string.sub(text, 1, index)
+        index = index + 1
+        wait(0.02)
+    end
+end
+
+local function f()
+    for i = 1, 20 do
+        textLabel.TextTransparency = i / 20
+        wait(0.01)
+    end
+end
+local function fs()
+coroutine.wrap(function()
+textLabel.TextStrokeTransparency = 0.1
+task.wait(0.01)
+textLabel.TextStrokeTransparency = 0.2
+task.wait(0.01)
+textLabel.TextStrokeTransparency = 0.3
+task.wait(0.01)
+textLabel.TextStrokeTransparency = 0.4
+task.wait(0.01)
+textLabel.TextStrokeTransparency = 0.5
+task.wait(0.01)
+textLabel.TextStrokeTransparency = 0.6
+task.wait(0.01)
+textLabel.TextStrokeTransparency = 0.7
+task.wait(0.01)
+textLabel.TextStrokeTransparency = 0.8
+task.wait(0.01)
+textLabel.TextStrokeTransparency = 0.9
+task.wait(0.01)
+textLabel.TextStrokeTransparency = 1
+end)()
+end
+coroutine.wrap(function()
+    local m = "THATS NOT MY ORDER" -- text here
+    type(m)
+    wait(0)
+    fs() -- this for stroke lmao
+    f()
+end)()
+    end
+
+end
+
+--[[END OF MOVE 1 ULT ANIM]]
+--[[Move 2 ULT]]
+humanoid.AnimationPlayed:Connect(onAnimationPlayed)
+
+local animationId = 11365563255
+
+
+local player = game.Players.LocalPlayer
+
+local character = player.Character or player.CharacterAdded:Wait()
+
+local humanoid = character:WaitForChild("Humanoid")
+
+
+local function onAnimationPlayed(animationTrack)
+
+    if animationTrack.Animation.AnimationId == "rbxassetid://" .. animationId then
+
+
+local p = game.Players.LocalPlayer
+
+local Humanoid = p.Character:WaitForChild("Humanoid")
+
+
+for _, animTrack in pairs(Humanoid:GetPlayingAnimationTracks()) do
+
+    animTrack:Stop()
+
+end
+
+
+local AnimAnim = Instance.new("Animation")
+
+AnimAnim.AnimationId = "rbxassetid://140164642047188"
+
+local Anim = Humanoid:LoadAnimation(AnimAnim)
+
+
+local startTime = 0
+
+
+Anim:Play()
+
+Anim:AdjustSpeed(0)
+
+Anim.TimePosition = startTime
+
+Anim:AdjustSpeed(1.35)
+
+local player = game.Players.LocalPlayer
+local playerGui = player:WaitForChild("PlayerGui")
+local s = Instance.new("ScreenGui")
+s.Parent = playerGui
+
+local textLabel = Instance.new("TextLabel")
+textLabel.Parent = s
+textLabel.Position = UDim2.new(0.5, -200, 0.8, -50)
+textLabel.Size = UDim2.new(0, 400, 0, 50)
+textLabel.TextSize = 22.5
+textLabel.TextColor3 = Color3.fromRGB(255, 255, 255) --text color
+textLabel.Font = Enum.Font.Antique -- font here
+textLabel.BackgroundTransparency = 1
+textLabel.Text = "" -- dont change
+textLabel.TextStrokeTransparency = 0
+textLabel.TextStrokeColor3 = Color3.fromRGB(0, 0, 0) --stroke color here
+
+local function type(text)
+    local index = 1
+    while index <= #text do
+        textLabel.Text = string.sub(text, 1, index)
+        index = index + 1
+        wait(0.02)
+    end
+end
+
+local function f()
+    for i = 1, 20 do
+        textLabel.TextTransparency = i / 20
+        wait(0.01)
+    end
+end
+local function fs()
+coroutine.wrap(function()
+textLabel.TextStrokeTransparency = 0.1
+task.wait(0.01)
+textLabel.TextStrokeTransparency = 0.2
+task.wait(0.01)
+textLabel.TextStrokeTransparency = 0.3
+task.wait(0.01)
+textLabel.TextStrokeTransparency = 0.4
+task.wait(0.01)
+textLabel.TextStrokeTransparency = 0.5
+task.wait(0.01)
+textLabel.TextStrokeTransparency = 0.6
+task.wait(0.01)
+textLabel.TextStrokeTransparency = 0.7
+task.wait(0.01)
+textLabel.TextStrokeTransparency = 0.8
+task.wait(0.01)
+textLabel.TextStrokeTransparency = 0.9
+task.wait(0.01)
+textLabel.TextStrokeTransparency = 1
+end)()
+end
+coroutine.wrap(function()
+    local m = "This MOSQUITO IS ABOUT TO FACE MY WRATH." -- text here
+    type(m)
+    wait(0)
+    fs() -- this for stroke lmao
+    f()
+end)()
+    end
+
+end
+
+--[[END OF MOVE 2 ULT ANIM]]
+
+--[[Move 2 ULT]]
+humanoid.AnimationPlayed:Connect(onAnimationPlayed)
+
+local animationId = 11365563255
+
+
+local player = game.Players.LocalPlayer
+
+local character = player.Character or player.CharacterAdded:Wait()
+
+local humanoid = character:WaitForChild("Humanoid")
+
+
+local function onAnimationPlayed(animationTrack)
+
+    if animationTrack.Animation.AnimationId == "rbxassetid://" .. animationId then
+
+
+local p = game.Players.LocalPlayer
+
+local Humanoid = p.Character:WaitForChild("Humanoid")
+
+
+for _, animTrack in pairs(Humanoid:GetPlayingAnimationTracks()) do
+
+    animTrack:Stop()
+
+end
+
+
+local AnimAnim = Instance.new("Animation")
+
+AnimAnim.AnimationId = "rbxassetid://140164642047188"
+
+local Anim = Humanoid:LoadAnimation(AnimAnim)
+
+
+local startTime = 0
+
+
+Anim:Play()
+
+Anim:AdjustSpeed(0)
+
+Anim.TimePosition = startTime
+
+Anim:AdjustSpeed(1.35)
+
+
+    end
+
+end
+
+--[[END OF MOVE 2 ULT ANIM]]
+
+end
+
+if getgenv().evening then
+local lighting = game.Lighting
+
+lighting.TimeOfDay = "18:00:00"
+lighting.ClockTime = 18
+lighting.Brightness = 2
+lighting.Ambient = Color3.fromRGB(80, 60, 100)
+lighting.OutdoorAmbient = Color3.fromRGB(100, 90, 140)
+lighting.FogEnd = 300
+lighting.FogColor = Color3.fromRGB(120, 100, 160)
+end
+
+if getgenv().customidle then
+pcall(function() getgenv().Idle:Disconnect() end)
+getgenv().Idle = game.Players.LocalPlayer.Character.Humanoid.AnimationPlayed:Connect(function(v)
+    if v.Animation.AnimationId == "rbxassetid://14516273501" then
+        local Anim = Instance.new("Animation") Anim.AnimationId = "rbxassetid://14357943487"
+        Anim.AnimationId = "rbxassetid://100255267749203"
+        local humanoid = game.Players.LocalPlayer.Character.Humanoid
+        local k = humanoid:LoadAnimation(Anim)
+        k.Priority = Enum.AnimationPriority.Idle
+        k.Looped = true
+        k:Play(0.6)
+        k:AdjustSpeed(0) -- Freeze animation for manual control
+        -- Define key points for the loop
+        local startTime = 1.9 -- First keyframe
+        local endTime = 2.2 -- Second keyframe
+        local cycleDuration = 3 -- Time for a full A -> B -> A cycle
+        local timeElapsed = 0
+        -- RunService connection to smoothly animate
+        local connection
+        connection = game:GetService("RunService").Heartbeat:Connect(function(deltaTime)
+            timeElapsed = (timeElapsed + deltaTime) % (cycleDuration * 2) -- Loop time
+            -- Create a smooth sine-based motion
+            local alpha = (math.sin((timeElapsed / cycleDuration) * math.pi - math.pi / 2) + 1) / 2
+            k.TimePosition = startTime + (endTime - startTime) * alpha
+        end)
+        -- Stop everything when the original animation stops
+        v.Stopped:Wait()
+        k:Stop(0.3)
+        connection:Disconnect()
+    end
+end)  
+end
 
 if getgenv().orbitalstrike then
 
@@ -580,7 +1098,7 @@ end
 
 local AnimAnim = Instance.new("Animation")
 
-AnimAnim.AnimationId = "rbxassetid://116753755471636"
+AnimAnim.AnimationId = "rbxassetid://18897551628"
 
 local Anim = Humanoid:LoadAnimation(AnimAnim)
 
@@ -941,7 +1459,7 @@ end
 
 local AnimAnim = Instance.new("Animation")
 
-AnimAnim.AnimationId = "rbxassetid://116753755471636"
+AnimAnim.AnimationId = "rbxassetid://18897551628"
 
 local Anim = Humanoid:LoadAnimation(AnimAnim)
 
