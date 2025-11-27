@@ -894,7 +894,7 @@ coroutine.wrap(function()
     local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
 
     local normalGravity = Workspace.Gravity
-    local spinSpeed = 0.1
+    local spinSpeed = 10000
     local spinDuration = 1.2
     local initialRadius = 0.1
     local finalRadius = 0.1
