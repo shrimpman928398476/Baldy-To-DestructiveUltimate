@@ -1172,22 +1172,144 @@ animTrack:Stop()
 
 end)
  wait(1)
-local player = game.Players.LocalPlayer
+local Players = game:GetService("Players")
+local localPlayer = Players.LocalPlayer
+
+local function getClosestPlayer()
+    local character = localPlayer.Character or localPlayer.CharacterAdded:Wait()
+    local root = character:WaitForChild("HumanoidRootPart")
+
+    local closestDistance = math.huge
+    local closestPlayer = nil
+
+    for _, player in pairs(Players:GetPlayers()) do
+        if player ~= localPlayer and player.Character then
+            local otherRoot = player.Character:FindFirstChild("HumanoidRootPart")
+            if otherRoot then
+                local distance = (root.Position - otherRoot.Position).Magnitude
+                if distance < closestDistance then
+                    closestDistance = distance
+                    closestPlayer = player
+                end
+            end
+        end
+    end
+
+    return closestPlayer
+end
+
+task.wait(1) -- small delay so characters load
+
+local target = getClosestPlayer()
+if target and target.Character then
+    local targetRoot = target.Character:FindFirstChild("HumanoidRootPart")
+    if targetRoot then
+        localPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = targetRoot.CFrame
+        print("Teleported to closest player:", target.Name)
+    end
+end
+    local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+
+local player = Players.LocalPlayer
 local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
 local hrp = character:WaitForChild("HumanoidRootPart")
 
--- Teleport 50 studs up
-hrp.CFrame = hrp.CFrame + Vector3.new(0, 50, 0)
+-- Function: find closest player
+local function getClosestPlayer()
+    local closest = nil
+    local shortest = math.huge
+    
+    for _, plr in ipairs(Players:GetPlayers()) do
+        if plr ~= player and plr.Character and plr.Character:FindFirstChild("HumanoidRootPart") then
+            local dist = (plr.Character.HumanoidRootPart.Position - hrp.Position).Magnitude
+            if dist < shortest then
+                closest = plr
+                shortest = dist
+            end
+        end
+    end
 
-workspace.Gravity = 0
+    return closest
+end
+
+-- Begin action -------------------------------------------------------
+
+local target = getClosestPlayer()
+if not target then return end
+
+local targetHRP = target.Character.HumanoidRootPart
+
+-- Store original states
+local originalCFrame = hrp.CFrame
+local originalAutoRotate = humanoid.AutoRotate
+
+-- Disable rotation systems
+humanoid.AutoRotate = false
+humanoid.WalkSpeed = 0
+humanoid.JumpPower = 0
+
+-- Face down (180 degrees on X)
+local faceDown = CFrame.Angles(math.rad(-90), 0, 0)
+
+-- KEEP POSITION LOCKED FOR 1 SECOND
+local connection
+connection = RunService.RenderStepped:Connect(function()
+    -- 5 studs above closest player
+    local lockPos = targetHRP.Position + Vector3.new(0, 50, 0)
+    
+    -- Apply the rotation + locked position
+    hrp.CFrame = CFrame.new(lockPos) * faceDown
+    
+    -- Zero angular rotation
+    hrp.AssemblyAngularVelocity = Vector3.zero
+end)
 game:GetService("Players").LocalPlayer.Character.Communicate:FireServer(unpack({
     [1] = {
         ["Tool"] = game:GetService("Players").LocalPlayer.Backpack["Table Flip"],
         ["Goal"] = "Console Move"
     }
 }))      
-wait(7)
-workspace.Gravity = 196.8
+-- Get the player's camera
+local player = game.Players.LocalPlayer
+local camera = game.Workspace.CurrentCamera
+
+-- Set the camera's CameraType to Scriptable (this "freezes" the camera)
+camera.CameraType = Enum.CameraType.Scriptable
+
+-- Get the player's position
+local playerPosition = player.Character.HumanoidRootPart.Position
+
+-- Set the camera's position above the player (e.g., 50 units above)
+local freezePosition = playerPosition + Vector3.new(90, 150, -100) -- x, y, z coordinates, y is higher than player's position
+
+-- Set the camera's CFrame (position + orientation)
+camera.CFrame = CFrame.new(freezePosition)
+
+-- Optional: Make the camera look at the player (or another point if desired)
+camera.CFrame = CFrame.new(freezePosition, playerPosition)
+
+
+task.wait(6.5)
+
+Players = game:GetService("Players")
+ local speaker = Players.LocalPlayer
+ workspace.CurrentCamera:remove()
+     wait(.1)
+     workspace.CurrentCamera.CameraSubject = speaker.Character:FindFirstChildWhichIsA('Humanoid')
+     workspace.CurrentCamera.CameraType = "Custom"
+     speaker.CameraMinZoomDistance = 0.5
+     speaker.CameraMaxZoomDistance = 400
+     speaker.CameraMode = "Classic"
+     speaker.Character.Head.Anchored = false
+task.wait(0)
+-- Restore normal state
+connection:Disconnect()
+humanoid.AutoRotate = originalAutoRotate
+humanoid.WalkSpeed = 16
+humanoid.JumpPower = 50
+hrp.CFrame = originalCFrame
     end
 
 end
