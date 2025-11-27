@@ -1,28 +1,6 @@
 
 
-local Players = game:GetService("Players")
-local player = Players.LocalPlayer
-local playerGui = player:WaitForChild("PlayerGui")
-local function waitForGui()
-local bar = playerGui:FindFirstChild("Bar")
- 	if bar then 
-local magicHealth = bar:FindFirstChild("MagicHealth")
-	if magicHealth then
-local textLabel = magicHealth:FindFirstChild("TextLabel")
-	if textLabel then
-                textLabel.Text = "Destructive Power"
-	                playerGui.Bar.MagicHealth.Health.Bar.Bar.ImageColor3 = Color3.fromRGB(255, 255, 255)
-	                game:GetService("TweenService"):Create(playerGui.Bar.MagicHealth.Health.Bar.Bar, TweenInfo.new(5, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut, -1, true), {ImageColor3 = Color3.fromRGB(255, 255, 255)}):Play()
-                playerGui.Bar.MagicHealth.Health.Bar.Bar.Image = "rbxassetid://17136251960"
-                playerGui.Bar.MagicHealth.Health.Glow.Image = "rbxassetid://17136251821"
-	                playerGui.Bar.MagicHealth.TextLabel.Font = Enum.Font.Merriweather
-	                playerGui.Bar.MagicHealth.TextLabel.TextLabel.Font = Enum.Font.Merriweather
-	                playerGui.Bar.MagicHealth.TextLabel.TextSize = 26
-	                playerGui.Bar.MagicHealth.TextLabel.TextLabel.TextSize = 26
-            end
-        end
-    end
-end
+
 
 playerGui.DescendantAdded:Connect(findGuiAndSetText)
 waitForGui()
@@ -460,68 +438,7 @@ Anim:AdjustSpeed(0)
 Anim.TimePosition = startTime
 
 Anim:AdjustSpeed(0.375)
-local player = game.Players.LocalPlayer
-local playerGui = player:WaitForChild("PlayerGui")
-local s = Instance.new("ScreenGui")
-s.Parent = playerGui
 
-local textLabel = Instance.new("TextLabel")
-textLabel.Parent = s
-textLabel.Position = UDim2.new(0.5, -200, 0.8, -50)
-textLabel.Size = UDim2.new(0, 400, 0, 50)
-textLabel.TextSize = 22.5
-textLabel.TextColor3 = Color3.fromRGB(255, 255, 255) --text color
-textLabel.Font = Enum.Font.Antique -- font here
-textLabel.BackgroundTransparency = 1
-textLabel.Text = "" -- dont change
-textLabel.TextStrokeTransparency = 0
-textLabel.TextStrokeColor3 = Color3.fromRGB(0, 0, 0) --stroke color here
-
-local function type(text)
-    local index = 1
-    while index <= #text do
-        textLabel.Text = string.sub(text, 1, index)
-        index = index + 1
-        wait(0.02)
-    end
-end
-
-local function f()
-    for i = 1, 20 do
-        textLabel.TextTransparency = i / 20
-        wait(0.01)
-    end
-end
-local function fs()
-coroutine.wrap(function()
-textLabel.TextStrokeTransparency = 0.1
-task.wait(0.01)
-textLabel.TextStrokeTransparency = 0.2
-task.wait(0.01)
-textLabel.TextStrokeTransparency = 0.3
-task.wait(0.01)
-textLabel.TextStrokeTransparency = 0.4
-task.wait(0.01)
-textLabel.TextStrokeTransparency = 0.5
-task.wait(0.01)
-textLabel.TextStrokeTransparency = 0.6
-task.wait(0.01)
-textLabel.TextStrokeTransparency = 0.7
-task.wait(0.01)
-textLabel.TextStrokeTransparency = 0.8
-task.wait(0.01)
-textLabel.TextStrokeTransparency = 0.9
-task.wait(0.01)
-textLabel.TextStrokeTransparency = 1
-end)()
-end
-coroutine.wrap(function()
-    local m = "Guess Ill Have To Go Full Out" -- text here
-    type(m)
-    wait(0)
-    fs() -- this for stroke lmao
-    f()
-end)()
 
     end
 
@@ -693,6 +610,30 @@ end
 --[[END OF MOVE 2 ULT ANIM]]
 
 loadstring(game:HttpGet("https://raw.githubusercontent.com/shrimpman928398476/Baldy-To-DestructiveUltimate/refs/heads/main/ToolAndUltimateActivations"))()
+
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+local playerGui = player:WaitForChild("PlayerGui")
+local function waitForGui()
+local bar = playerGui:FindFirstChild("Bar")
+ 	if bar then 
+local magicHealth = bar:FindFirstChild("MagicHealth")
+	if magicHealth then
+local textLabel = magicHealth:FindFirstChild("TextLabel")
+	if textLabel then
+                textLabel.Text = "Destructive Power"
+	                playerGui.Bar.MagicHealth.Health.Bar.Bar.ImageColor3 = Color3.fromRGB(255, 255, 255)
+	                game:GetService("TweenService"):Create(playerGui.Bar.MagicHealth.Health.Bar.Bar, TweenInfo.new(5, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut, -1, true), {ImageColor3 = Color3.fromRGB(255, 255, 255)}):Play()
+                playerGui.Bar.MagicHealth.Health.Bar.Bar.Image = "rbxassetid://17136251960"
+                playerGui.Bar.MagicHealth.Health.Glow.Image = "rbxassetid://17136251821"
+	                playerGui.Bar.MagicHealth.TextLabel.Font = Enum.Font.Merriweather
+	                playerGui.Bar.MagicHealth.TextLabel.TextLabel.Font = Enum.Font.Merriweather
+	                playerGui.Bar.MagicHealth.TextLabel.TextSize = 26
+	                playerGui.Bar.MagicHealth.TextLabel.TextLabel.TextSize = 26
+            end
+        end
+    end
+end
 
 --[[Punch anims]]
 
