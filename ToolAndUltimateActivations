@@ -397,80 +397,126 @@ died = true
 end)  end
 
 if getgenv().freakymode then
---Move & Ultimate Names
 
-local player = game.Players.LocalPlayer
-
-local playerGui = player.PlayerGui
-
-local hotbar = playerGui:FindFirstChild("Hotbar")
-
-local backpack = hotbar:FindFirstChild("Backpack")
-
-local hotbarFrame = backpack:FindFirstChild("Hotbar")
-
-local baseButton = hotbarFrame:FindFirstChild("1").Base
-
-local ToolName = baseButton.ToolName
-
-
-ToolName.Text = "Forceful Shot"
-
-
-local player = game.Players.LocalPlayer
-
-local playerGui = player.PlayerGui
-
-local hotbar = playerGui:FindFirstChild("Hotbar")
-
-local backpack = hotbar:FindFirstChild("Backpack")
-
-local hotbarFrame = backpack:FindFirstChild("Hotbar")
-
-local baseButton = hotbarFrame:FindFirstChild("2").Base
-
-local ToolName = baseButton.ToolName
-
-
-ToolName.Text = "Calamitic Fisting"
-
-
-local player = game.Players.LocalPlayer
-
-local playerGui = player.PlayerGui
-
-local hotbar = playerGui:FindFirstChild("Hotbar")
-
-local backpack = hotbar:FindFirstChild("Backpack")
-
-local hotbarFrame = backpack:FindFirstChild("Hotbar")
-
-local baseButton = hotbarFrame:FindFirstChild("3").Base
-
-local ToolName = baseButton.ToolName
-
-
-ToolName.Text = "Quick Shot"
-
-
-local player = game.Players.LocalPlayer
-
-local playerGui = player.PlayerGui
-
-local hotbar = playerGui:FindFirstChild("Hotbar")
-
-local backpack = hotbar:FindFirstChild("Backpack")
-
-local hotbarFrame = backpack:FindFirstChild("Hotbar")
-
-local baseButton = hotbarFrame:FindFirstChild("4").Base
-
-local ToolName = baseButton.ToolName
-
-
-ToolName.Text = "Diddy's Release"
-
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+local playerGui = player:WaitForChild("PlayerGui")
+local function waitForGui()
+local bar = playerGui:FindFirstChild("Bar")
+ 	if bar then 
+local magicHealth = bar:FindFirstChild("MagicHealth")
+	if magicHealth then
+local textLabel = magicHealth:FindFirstChild("TextLabel")
+	if textLabel then
+                textLabel.Text = "CALAMATIC 6 STAGES"
+	                playerGui.Bar.MagicHealth.Health.Bar.Bar.ImageColor3 = Color3.fromRGB(255, 255, 255)
+	                game:GetService("TweenService"):Create(playerGui.Bar.MagicHealth.Health.Bar.Bar, TweenInfo.new(5, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut, -1, true), {ImageColor3 = Color3.fromRGB(255, 255, 255)}):Play()
+                playerGui.Bar.MagicHealth.Health.Bar.Bar.Image = "rbxassetid://17136251960"
+                playerGui.Bar.MagicHealth.Health.Glow.Image = "rbxassetid://17136251821"
+	                playerGui.Bar.MagicHealth.TextLabel.Font = Enum.Font.Merriweather
+	                playerGui.Bar.MagicHealth.TextLabel.TextLabel.Font = Enum.Font.Merriweather
+	                playerGui.Bar.MagicHealth.TextLabel.TextSize = 26
+	                playerGui.Bar.MagicHealth.TextLabel.TextLabel.TextSize = 26
+            end
+        end
+    end
 end
+
+playerGui.DescendantAdded:Connect(findGuiAndSetText)
+waitForGui()
+local player = game.Players.LocalPlayer
+	local char = player.Character
+	local Humanoid = char.Humanoid
+	local hot = player.PlayerGui:WaitForChild("Hotbar")
+	local hotbar = hot:WaitForChild("Backpack"):WaitForChild("Hotbar")
+
+	local function cloneToolName(slot, text)
+		local toolName = slot.ToolName
+		if not slot:FindFirstChild("CustomName") then
+			toolName.Visible = false
+			local clone = toolName:Clone()
+			clone.Name = "CustomName"
+			clone.Parent = slot
+			clone.Text = text
+			clone.Visible = true
+		elseif slot:FindFirstChild("CustomName") then
+			if slot:FindFirstChild("CustomName").Text ~= text then
+				toolName.Visible = false
+				slot:FindFirstChild("CustomName").Text = text
+			end
+		end
+	end
+
+
+	local toolNameMap = {
+		["Normal Punch"] = "Forceful Shot",
+		["Consecutive Punches"] = "Calamatic Fisting",
+		["Shove"] = "Baby Oil",
+		["Uppercut"] = "Diddy's Release",
+		
+		["Death Counter"] = "Counter This",
+		["Table Flip"] = "Atomic Oil",
+		["Serious Punch"] = "Orbital Shot",
+		["Omin Directional Punch"] = "Omni Directonal Punch" 
+	}
+
+	local function typeText(label, text, delay)
+		delay = delay or 0.05
+		local originalText = text
+		label.Text = ""
+		for i = 1, #originalText do
+			label.Text = string.sub(originalText, 1, i)
+			task.wait(delay)
+		end
+	end
+
+
+
+	local typedTools = {}
+
+	local function updateToolNames()
+		for _, slot in ipairs(hotbar:GetChildren()) do
+			if slot:FindFirstChild("Base") and slot.Base:FindFirstChild("ToolName") then
+				local toolNameText = slot.Base.ToolName.Text
+				local newName = toolNameMap[toolNameText]
+				if newName then
+					cloneToolName(slot.Base, newName)
+					if slot.Base:FindFirstChild("CustomName") and not typedTools[newName] then
+						typeText(slot.Base.CustomName, newName, 0.03)
+						typedTools[newName] = true
+
+
+					end
+				end
+			end
+		end
+	end
+
+	task.spawn(
+		function()
+			local currentUltIndex = 1
+
+			while true do
+				typeText(UltLabel, ultTexts[currentUltIndex], 0.001)
+				currentUltIndex = (currentUltIndex % #ultTexts) + 1
+
+				pcall(
+					function()
+					end
+				)
+
+				updateToolNames()
+				task.wait(10)
+			end
+		end
+	)
+
+	task.spawn(
+		function()
+			while task.wait(1) do
+				updateToolNames()
+			end
+		end) 
 
 if getgenv().orbitalstrike then
 
@@ -484,9 +530,9 @@ local magicHealth = bar:FindFirstChild("MagicHealth")
 	if magicHealth then
 local textLabel = magicHealth:FindFirstChild("TextLabel")
 	if textLabel then
-                textLabel.Text = "ORBITAL STRIKE"
-	                playerGui.Bar.MagicHealth.Health.Bar.Bar.ImageColor3 = Color3.fromRGB(255, 125, 0)
-	                game:GetService("TweenService"):Create(playerGui.Bar.MagicHealth.Health.Bar.Bar, TweenInfo.new(5, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut, -1, true), {ImageColor3 = Color3.fromRGB(180, 60, 0)}):Play()
+                textLabel.Text = "ORBITAL STRIKE CANNON"
+	                playerGui.Bar.MagicHealth.Health.Bar.Bar.ImageColor3 = Color3.fromRGB(255, 128, 26)
+	                game:GetService("TweenService"):Create(playerGui.Bar.MagicHealth.Health.Bar.Bar, TweenInfo.new(5, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut, -1, true), {ImageColor3 = Color3.fromRGB(0, 255, 255)}):Play()
                 playerGui.Bar.MagicHealth.Health.Bar.Bar.Image = "rbxassetid://17136251960"
                 playerGui.Bar.MagicHealth.Health.Glow.Image = "rbxassetid://17136251821"
 	                playerGui.Bar.MagicHealth.TextLabel.Font = Enum.Font.Merriweather
