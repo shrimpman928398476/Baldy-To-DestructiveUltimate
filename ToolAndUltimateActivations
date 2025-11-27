@@ -5,24 +5,7 @@ local CooldownLengh = 5
 local Burning = false -- [ the KJ UFW burning effect ]
 
 local Activated = function()
-local animation = Instance.new("Animation")
-animation.AnimationId = "rbxassetid://136370737633649"
-        
-        local chr = game.Players.LocalPlayer.Character
-        local humanoid = chr:WaitForChild("Humanoid")
-        
-        local animTrack = humanoid:LoadAnimation(animation)
-        animTrack:Play()
-animTrack:AdjustSpeed(1.35)
-animTrack.TimePosition = 1.75
-        task.delay(1, 
 
-function() 
-
-animTrack:Stop()
-
-
-end)
 local Players = game:GetService("Players")
 local localPlayer = Players.LocalPlayer
 
