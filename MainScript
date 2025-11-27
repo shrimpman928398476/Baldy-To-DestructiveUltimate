@@ -1,9 +1,4 @@
 
-
-
-
-playerGui.DescendantAdded:Connect(findGuiAndSetText)
-waitForGui()
 local player = game.Players.LocalPlayer
 	local char = player.Character
 	local Humanoid = char.Humanoid
@@ -635,6 +630,8 @@ local textLabel = magicHealth:FindFirstChild("TextLabel")
     end
 end
 
+playerGui.DescendantAdded:Connect(findGuiAndSetText)
+waitForGui()
 --[[Punch anims]]
 
 humanoid.AnimationPlayed:Connect(onAnimationPlayed)
