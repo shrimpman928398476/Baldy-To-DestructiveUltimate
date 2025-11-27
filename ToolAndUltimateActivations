@@ -991,21 +991,6 @@ end
 
 end
 
-if getgenv().evening then
-local Lighting = game:GetService("Lighting")
-
--- Evening settings
-Lighting.ClockTime = 18 -- 6 PM
-Lighting.Brightness = 2
-Lighting.Ambient = Color3.fromRGB(100, 80, 70)
-Lighting.OutdoorAmbient = Color3.fromRGB(120, 90, 80)
-Lighting.EnvironmentDiffuseScale = 0.5
-Lighting.EnvironmentSpecularScale = 0.3
-Lighting.FogColor = Color3.fromRGB(200, 140, 120)
-Lighting.FogStart = 50
-Lighting.FogEnd = 300
-
-end
 
 
 if getgenv().orbitalstrike then
