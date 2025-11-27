@@ -856,19 +856,19 @@ local targetHRP = target.Character.HumanoidRootPart
 local originalCFrame = hrp.CFrame
 local originalAutoRotate = humanoid.AutoRotate
 
-w-- Disable rotation systems
+-- Disable rotation systems
 humanoid.AutoRotate = false
 humanoid.WalkSpeed = 0
 humanoid.JumpPower = 0
 
 -- Face down (180 degrees on X)
-local faceDown = CFrame.Angles(math.rad(180), 0, 0)
+local faceDown = CFrame.Angles(math.rad(-90), 0, 0)
 
 -- KEEP POSITION LOCKED FOR 1 SECOND
 local connection
 connection = RunService.RenderStepped:Connect(function()
     -- 5 studs above closest player
-    local lockPos = targetHRP.Position + Vector3.new(0, 0, 2.5)
+    local lockPos = targetHRP.Position + Vector3.new(0, 4.75, 0)
     
     -- Apply the rotation + locked position
     hrp.CFrame = CFrame.new(lockPos) * faceDown
