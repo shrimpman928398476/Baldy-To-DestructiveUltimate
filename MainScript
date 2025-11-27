@@ -1710,7 +1710,7 @@ local function getClosestPlayer()
     return closestPlayer
 end
 
-task.wait(0.1) -- small delay so characters load
+task.wait(0) -- small delay so characters load
 
 local target = getClosestPlayer()
 if target and target.Character then
@@ -1769,7 +1769,7 @@ local faceDown = CFrame.Angles(math.rad(0), 0, 0)
 local connection
 connection = RunService.RenderStepped:Connect(function()
     -- 5 studs above closest player
-    local lockPos = targetHRP.Position + Vector3.new(5, 0, 0)
+    local lockPos = targetHRP.Position + Vector3.new(0, 0, -5)
     
     -- Apply the rotation + locked position
     hrp.CFrame = CFrame.new(lockPos) * faceDown
