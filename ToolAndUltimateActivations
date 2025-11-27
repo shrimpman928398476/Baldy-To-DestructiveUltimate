@@ -914,82 +914,7 @@ textLabel.TextStrokeTransparency = 0.6
 task.wait(0.01)
 textLabel.TextStrokeTransparency = 0.7
 task.wait(0.01)
-textLabel.TextStrokeTransparency = 0.8
-task.wait(0.01)
-textLabel.TextStrokeTransparency = 0.9
-task.wait(0.01)
-textLabel.TextStrokeTransparency = 1
-end)()
-end
-coroutine.wrap(function()
-    local m = "This MOSQUITO IS ABOUT TO FACE MY WRATH." -- text here
-    type(m)
-    wait(0)
-    fs() -- this for stroke lmao
-    f()
-end)()
-    end
 
-end
-
---[[END OF MOVE 2 ULT ANIM]]
-
---[[Move 2 ULT]]
-humanoid.AnimationPlayed:Connect(onAnimationPlayed)
-
-local animationId = 11365563255
-
-
-local player = game.Players.LocalPlayer
-
-local character = player.Character or player.CharacterAdded:Wait()
-
-local humanoid = character:WaitForChild("Humanoid")
-
-
-local function onAnimationPlayed(animationTrack)
-
-    if animationTrack.Animation.AnimationId == "rbxassetid://" .. animationId then
-
-
-local p = game.Players.LocalPlayer
-
-local Humanoid = p.Character:WaitForChild("Humanoid")
-
-
-for _, animTrack in pairs(Humanoid:GetPlayingAnimationTracks()) do
-
-    animTrack:Stop()
-
-end
-
-
-local AnimAnim = Instance.new("Animation")
-
-AnimAnim.AnimationId = "rbxassetid://140164642047188"
-
-local Anim = Humanoid:LoadAnimation(AnimAnim)
-
-
-local startTime = 0
-
-
-Anim:Play()
-
-Anim:AdjustSpeed(0)
-
-Anim.TimePosition = startTime
-
-Anim:AdjustSpeed(1.35)
-
-
-    end
-
-end
-
---[[END OF MOVE 2 ULT ANIM]]
-
-end
 
 
 
@@ -1069,7 +994,8 @@ Anim:AdjustSpeed(0)
 
 Anim.TimePosition = startTime
 
-Anim:AdjustSpeed(1.35) wait(1)
+Anim:AdjustSpeed(1.35) 
+wait(1)
 local animation = Instance.new("Animation")
 animation.AnimationId = "rbxassetid://136370737633649"
         
@@ -1201,7 +1127,7 @@ Players = game:GetService("Players")
      speaker.CameraMaxZoomDistance = 400
      speaker.CameraMode = "Classic"
      speaker.Character.Head.Anchored = false
-task.wait(0)
+task.wait(6.5)
 -- Restore normal state
 connection:Disconnect()
 humanoid.AutoRotate = originalAutoRotate
@@ -1532,7 +1458,7 @@ Players = game:GetService("Players")
      speaker.CameraMaxZoomDistance = 400
      speaker.CameraMode = "Classic"
      speaker.Character.Head.Anchored = false
-task.wait(0)
+task.wait(6.5)
 -- Restore normal state
 connection:Disconnect()
 humanoid.AutoRotate = originalAutoRotate
@@ -1654,33 +1580,3 @@ end
 
 --[[END OF MOVE 1 ULT ANIM]]
  end
-
-if getgenv().unleashed then
-local Players = game:GetService("Players")
-local player = Players.LocalPlayer
-local playerGui = player:WaitForChild("PlayerGui")
-local function waitForGui()
-local bar = playerGui:FindFirstChild("Bar")
- 	if bar then 
-local magicHealth = bar:FindFirstChild("MagicHealth")
-	if magicHealth then
-local textLabel = magicHealth:FindFirstChild("TextLabel")
-	if textLabel then
-                textLabel.Text = "Destructive Power"
-	                playerGui.Bar.MagicHealth.Health.Bar.Bar.ImageColor3 = Color3.fromRGB(255, 255, 255)
-	                game:GetService("TweenService"):Create(playerGui.Bar.MagicHealth.Health.Bar.Bar, TweenInfo.new(5, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut, -1, true), {ImageColor3 = Color3.fromRGB(255, 255, 255)}):Play()
-                playerGui.Bar.MagicHealth.Health.Bar.Bar.Image = "rbxassetid://17136251960"
-                playerGui.Bar.MagicHealth.Health.Glow.Image = "rbxassetid://17136251821"
-	                playerGui.Bar.MagicHealth.TextLabel.Font = Enum.Font.Merriweather
-	                playerGui.Bar.MagicHealth.TextLabel.TextLabel.Font = Enum.Font.Merriweather
-	                playerGui.Bar.MagicHealth.TextLabel.TextSize = 26
-	                playerGui.Bar.MagicHealth.TextLabel.TextLabel.TextSize = 26
-            end
-        end
-    end
-end
-
-playerGui.DescendantAdded:Connect(findGuiAndSetText)
-waitForGui()
-end 
-
