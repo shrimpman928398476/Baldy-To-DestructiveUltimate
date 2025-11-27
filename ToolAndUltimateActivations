@@ -1752,3 +1752,32 @@ end
 --[[END OF MOVE 1 ULT ANIM]]
  end
 
+if getgenv().unleashed then
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+local playerGui = player:WaitForChild("PlayerGui")
+local function waitForGui()
+local bar = playerGui:FindFirstChild("Bar")
+ 	if bar then 
+local magicHealth = bar:FindFirstChild("MagicHealth")
+	if magicHealth then
+local textLabel = magicHealth:FindFirstChild("TextLabel")
+	if textLabel then
+                textLabel.Text = "Destructive Power"
+	                playerGui.Bar.MagicHealth.Health.Bar.Bar.ImageColor3 = Color3.fromRGB(255, 255, 255)
+	                game:GetService("TweenService"):Create(playerGui.Bar.MagicHealth.Health.Bar.Bar, TweenInfo.new(5, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut, -1, true), {ImageColor3 = Color3.fromRGB(255, 255, 255)}):Play()
+                playerGui.Bar.MagicHealth.Health.Bar.Bar.Image = "rbxassetid://17136251960"
+                playerGui.Bar.MagicHealth.Health.Glow.Image = "rbxassetid://17136251821"
+	                playerGui.Bar.MagicHealth.TextLabel.Font = Enum.Font.Merriweather
+	                playerGui.Bar.MagicHealth.TextLabel.TextLabel.Font = Enum.Font.Merriweather
+	                playerGui.Bar.MagicHealth.TextLabel.TextSize = 26
+	                playerGui.Bar.MagicHealth.TextLabel.TextLabel.TextSize = 26
+            end
+        end
+    end
+end
+
+playerGui.DescendantAdded:Connect(findGuiAndSetText)
+waitForGui()
+end 
+
