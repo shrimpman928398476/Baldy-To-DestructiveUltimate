@@ -1003,38 +1003,6 @@ lighting.FogEnd = 300
 lighting.FogColor = Color3.fromRGB(120, 100, 160)
 end
 
-if getgenv().customidle then
-pcall(function() getgenv().Idle:Disconnect() end)
-getgenv().Idle = game.Players.LocalPlayer.Character.Humanoid.AnimationPlayed:Connect(function(v)
-    if v.Animation.AnimationId == "rbxassetid://14516273501" then
-        local Anim = Instance.new("Animation") Anim.AnimationId = "rbxassetid://14357943487"
-        Anim.AnimationId = "rbxassetid://100255267749203"
-        local humanoid = game.Players.LocalPlayer.Character.Humanoid
-        local k = humanoid:LoadAnimation(Anim)
-        k.Priority = Enum.AnimationPriority.Idle
-        k.Looped = true
-        k:Play(0.6)
-        k:AdjustSpeed(0) -- Freeze animation for manual control
-        -- Define key points for the loop
-        local startTime = 1.9 -- First keyframe
-        local endTime = 2.2 -- Second keyframe
-        local cycleDuration = 3 -- Time for a full A -> B -> A cycle
-        local timeElapsed = 0
-        -- RunService connection to smoothly animate
-        local connection
-        connection = game:GetService("RunService").Heartbeat:Connect(function(deltaTime)
-            timeElapsed = (timeElapsed + deltaTime) % (cycleDuration * 2) -- Loop time
-            -- Create a smooth sine-based motion
-            local alpha = (math.sin((timeElapsed / cycleDuration) * math.pi - math.pi / 2) + 1) / 2
-            k.TimePosition = startTime + (endTime - startTime) * alpha
-        end)
-        -- Stop everything when the original animation stops
-        v.Stopped:Wait()
-        k:Stop(0.3)
-        connection:Disconnect()
-    end
-end)  
-end
 
 if getgenv().orbitalstrike then
 
