@@ -1710,7 +1710,7 @@ local function getClosestPlayer()
     return closestPlayer
 end
 
-task.wait(1) -- small delay so characters load
+task.wait(0.1) -- small delay so characters load
 
 local target = getClosestPlayer()
 if target and target.Character then
