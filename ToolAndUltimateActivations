@@ -1105,7 +1105,29 @@ connection = RunService.RenderStepped:Connect(function()
     hrp.CFrame = CFrame.new(lockPos) * faceDown
     
     -- Zero angular rotation
-    hrp.AssemblyAngularVelocity = Vector3.zero
+    hrp.AssemblyAngularVelocity = Vector3.zero     local player = game.Players.LocalPlayer
+local camera = workspace.CurrentCamera
+
+camera.CameraType = Enum.CameraType.Scriptable
+
+local character = player.Character or player.CharacterAdded:Wait()
+local head = character:WaitForChild("Head")
+
+-- HOW CLOSE THE CAMERA IS (you can change this anytime)
+local distance = 75 -- smaller = closer, bigger = farther
+
+-- direction the camera sits at relative to the head
+local direction = Vector3.new(1, 1.5, -1).Unit -- diagonal from above-behind
+
+game:GetService("RunService").RenderStepped:Connect(function()
+    local headPos = head.Position
+
+    -- Calculate camera position based on distance
+    local camPos = headPos + direction * distance
+
+    -- Look at the head
+    camera.CFrame = CFrame.new(camPos, headPos)
+end) 
 end)
 game:GetService("Players").LocalPlayer.Character.Communicate:FireServer(unpack({
     [1] = {
@@ -1115,19 +1137,19 @@ game:GetService("Players").LocalPlayer.Character.Communicate:FireServer(unpack({
 }))      
 
 
-wait(.1)
+task.wait(6.5)
 
 Players = game:GetService("Players")
  local speaker = Players.LocalPlayer
  workspace.CurrentCamera:remove()
-     wait(.1)
+    task.wait(.1)
      workspace.CurrentCamera.CameraSubject = speaker.Character:FindFirstChildWhichIsA('Humanoid')
      workspace.CurrentCamera.CameraType = "Custom"
      speaker.CameraMinZoomDistance = 0.5
      speaker.CameraMaxZoomDistance = 400
      speaker.CameraMode = "Classic"
      speaker.Character.Head.Anchored = false
-task.wait(6.5)
+task.wait(0.05)
 -- Restore normal state
 connection:Disconnect()
 humanoid.AutoRotate = originalAutoRotate
