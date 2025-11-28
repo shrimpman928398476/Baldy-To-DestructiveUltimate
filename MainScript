@@ -972,7 +972,7 @@ AnimAnim.AnimationId = "rbxassetid://136370737633649"
 local Anim = Humanoid:LoadAnimation(AnimAnim)
 
 
-local startTime = 0
+local startTime = 1
 
 
 Anim:Play()
@@ -982,12 +982,14 @@ Anim:AdjustSpeed(0)
 Anim.TimePosition = startTime
 
 Anim:AdjustSpeed(1.35) wait(1.2) Anim:Stop()
+task.wait(0.1)
 game:GetService("Players").LocalPlayer.Character.Communicate:FireServer(unpack({
     [1] = {
         ["Tool"] = game:GetService("Players").LocalPlayer.Backpack["Serious Punch"],
         ["Goal"] = "Console Move"
     }
-})))
+}))
+
 wait(0.1)
 local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
