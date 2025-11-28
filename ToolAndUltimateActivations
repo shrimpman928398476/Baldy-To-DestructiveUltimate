@@ -765,32 +765,6 @@ game:GetService("Players").LocalPlayer.Character.Communicate:FireServer(unpack({
         ["Goal"] = "Console Move"
     }
 }))      
-local player = game.Players.LocalPlayer
-local camera = workspace.CurrentCamera
-
-camera.CameraType = Enum.CameraType.Scriptable
-
-local character = player.Character or player.CharacterAdded:Wait()
-local head = character:WaitForChild("Head")
-
--- HOW CLOSE THE CAMERA IS (you can change this anytime)
-local distance = 10 -- smaller = closer, bigger = farther
-
--- direction the camera sits at relative to the head
-local direction = Vector3.new(1, 1.5, -1).Unit -- diagonal from above-behind
-
-game:GetService("RunService").RenderStepped:Connect(function()
-    local headPos = head.Position
-
-    -- Calculate camera position based on distance
-    local camPos = headPos + direction * distance
-
-    -- Look at the head
-    camera.CFrame = CFrame.new(camPos, headPos)
-end)
-
-
-task.wait(6.5)
 
 Players = game:GetService("Players")
  local speaker = Players.LocalPlayer
@@ -802,7 +776,7 @@ Players = game:GetService("Players")
      speaker.CameraMaxZoomDistance = 400
      speaker.CameraMode = "Classic"
      speaker.Character.Head.Anchored = false
-task.wait(0)
+task.wait(6.4)
 -- Restore normal state
 connection:Disconnect()
 humanoid.AutoRotate = originalAutoRotate
@@ -1108,7 +1082,7 @@ local faceDown = CFrame.Angles(math.rad(-90), 0, 0)
 local connection
 connection = RunService.RenderStepped:Connect(function()
     -- 5 studs above closest player
-    local lockPos = targetHRP.Position + Vector3.new(0, 50, 0)
+    local lockPos = targetHRP.Position + Vector3.new(0, 80, 0)
     
     -- Apply the rotation + locked position
     hrp.CFrame = CFrame.new(lockPos) * faceDown
@@ -1118,36 +1092,10 @@ connection = RunService.RenderStepped:Connect(function()
 end)
 game:GetService("Players").LocalPlayer.Character.Communicate:FireServer(unpack({
     [1] = {
-        ["Tool"] = game:GetService("Players").LocalPlayer.Backpack["Serious Punch"],
+        ["Tool"] = game:GetService("Players").LocalPlayer.Backpack["Table Flip"],
         ["Goal"] = "Console Move"
     }
 }))      
-local player = game.Players.LocalPlayer
-local camera = workspace.CurrentCamera
-
-camera.CameraType = Enum.CameraType.Scriptable
-
-local character = player.Character or player.CharacterAdded:Wait()
-local head = character:WaitForChild("Head")
-
--- HOW CLOSE THE CAMERA IS (you can change this anytime)
-local distance = 10 -- smaller = closer, bigger = farther
-
--- direction the camera sits at relative to the head
-local direction = Vector3.new(1, 1.5, -1).Unit -- diagonal from above-behind
-
-game:GetService("RunService").RenderStepped:Connect(function()
-    local headPos = head.Position
-
-    -- Calculate camera position based on distance
-    local camPos = headPos + direction * distance
-
-    -- Look at the head
-    camera.CFrame = CFrame.new(camPos, headPos)
-end)
-
-
-task.wait(6.5)
 
 Players = game:GetService("Players")
  local speaker = Players.LocalPlayer
@@ -1159,7 +1107,7 @@ Players = game:GetService("Players")
      speaker.CameraMaxZoomDistance = 400
      speaker.CameraMode = "Classic"
      speaker.Character.Head.Anchored = false
-task.wait(0)
+task.wait(7)
 -- Restore normal state
 connection:Disconnect()
 humanoid.AutoRotate = originalAutoRotate
