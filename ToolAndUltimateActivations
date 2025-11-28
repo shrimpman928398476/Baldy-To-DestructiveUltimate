@@ -647,7 +647,7 @@ Anim:AdjustSpeed(0)
 
 Anim.TimePosition = startTime
 
-Anim:AdjustSpeed(1.35) wait(1.15)
+Anim:AdjustSpeed(1.35) wait(1)
 local animation = Instance.new("Animation")
 animation.AnimationId = "rbxassetid://136370737633649"
         
@@ -765,6 +765,56 @@ game:GetService("Players").LocalPlayer.Character.Communicate:FireServer(unpack({
         ["Goal"] = "Console Move"
     }
 }))      
+-- LocalScript
+
+local player = game.Players.LocalPlayer
+local camera = workspace.CurrentCamera
+
+-- Freeze camera so we can control it
+camera.CameraType = Enum.CameraType.Scriptable
+
+-- CONFIGURATION
+local distance = 35 -- how far behind the head
+local heightOffset = 10 -- how far above the head
+local sideOffset = 12 -- left (-) or right (+)
+local lookAtHead = true    -- camera looks at head if true
+
+-- Main loop
+task.spawn(function()
+    while true do
+        task.wait()
+
+        local character = player.Character
+        if not character then continue end
+
+        local head = character:FindFirstChild("Head")
+        if not head then continue end
+
+        -- Head position
+        local headPos = head.Position
+
+        -- Direction the head is facing
+        local forward = head.CFrame.LookVector
+
+        -- Camera final position (behind the head)
+        local camPos =
+            headPos
+            - forward * distance
+            + Vector3.new(0, heightOffset, 0)
+            + head.CFrame.RightVector * sideOffset
+
+        if lookAtHead then
+            -- Look at the head
+            camera.CFrame = CFrame.new(camPos, headPos)
+        else
+            -- Copy head rotation but offset
+            camera.CFrame = CFrame.new(camPos) * CFrame.Angles(0, head.Orientation.Y, 0)
+        end
+    end
+end)
+
+
+task.wait(6.5)
 
 Players = game:GetService("Players")
  local speaker = Players.LocalPlayer
@@ -776,7 +826,7 @@ Players = game:GetService("Players")
      speaker.CameraMaxZoomDistance = 400
      speaker.CameraMode = "Classic"
      speaker.Character.Head.Anchored = false
-task.wait(6.4)
+task.wait(0)
 -- Restore normal state
 connection:Disconnect()
 humanoid.AutoRotate = originalAutoRotate
@@ -978,26 +1028,7 @@ Anim:AdjustSpeed(0)
 
 Anim.TimePosition = startTime
 
-Anim:AdjustSpeed(1.35) wait(1)
-local animation = Instance.new("Animation")
-animation.AnimationId = "rbxassetid://136370737633649"
-        
-        local chr = game.Players.LocalPlayer.Character
-        local humanoid = chr:WaitForChild("Humanoid")
-        
-        local animTrack = humanoid:LoadAnimation(animation)
-        animTrack:Play()
-animTrack:AdjustSpeed(1.35)
-animTrack.TimePosition = 1.75
-        task.delay(1, 
-
-function() 
-
-animTrack:Stop()
-
-
-end)
-local Players = game:GetService("Players")
+Anim:AdjustSpeed(1.35) local Players = game:GetService("Players")
 local localPlayer = Players.LocalPlayer
 
 local function getClosestPlayer()
@@ -1082,7 +1113,7 @@ local faceDown = CFrame.Angles(math.rad(-90), 0, 0)
 local connection
 connection = RunService.RenderStepped:Connect(function()
     -- 5 studs above closest player
-    local lockPos = targetHRP.Position + Vector3.new(0, 80, 0)
+    local lockPos = targetHRP.Position + Vector3.new(0, 50, 0)
     
     -- Apply the rotation + locked position
     hrp.CFrame = CFrame.new(lockPos) * faceDown
@@ -1092,10 +1123,60 @@ connection = RunService.RenderStepped:Connect(function()
 end)
 game:GetService("Players").LocalPlayer.Character.Communicate:FireServer(unpack({
     [1] = {
-        ["Tool"] = game:GetService("Players").LocalPlayer.Backpack["Table Flip"],
+        ["Tool"] = game:GetService("Players").LocalPlayer.Backpack["Serious Punch"],
         ["Goal"] = "Console Move"
     }
 }))      
+-- LocalScript
+
+local player = game.Players.LocalPlayer
+local camera = workspace.CurrentCamera
+
+-- Freeze camera so we can control it
+camera.CameraType = Enum.CameraType.Scriptable
+
+-- CONFIGURATION
+local distance = 50 -- how far behind the head
+local heightOffset = 10 -- how far above the head
+local sideOffset = 12 -- left (-) or right (+)
+local lookAtHead = true    -- camera looks at head if true
+
+-- Main loop
+task.spawn(function()
+    while true do
+        task.wait()
+
+        local character = player.Character
+        if not character then continue end
+
+        local head = character:FindFirstChild("Head")
+        if not head then continue end
+
+        -- Head position
+        local headPos = head.Position
+
+        -- Direction the head is facing
+        local forward = head.CFrame.LookVector
+
+        -- Camera final position (behind the head)
+        local camPos =
+            headPos
+            - forward * distance
+            + Vector3.new(0, heightOffset, 0)
+            + head.CFrame.RightVector * sideOffset
+
+        if lookAtHead then
+            -- Look at the head
+            camera.CFrame = CFrame.new(camPos, headPos)
+        else
+            -- Copy head rotation but offset
+            camera.CFrame = CFrame.new(camPos) * CFrame.Angles(0, head.Orientation.Y, 0)
+        end
+    end
+end)
+
+
+task.wait(6.5)
 
 Players = game:GetService("Players")
  local speaker = Players.LocalPlayer
@@ -1107,7 +1188,7 @@ Players = game:GetService("Players")
      speaker.CameraMaxZoomDistance = 400
      speaker.CameraMode = "Classic"
      speaker.Character.Head.Anchored = false
-task.wait(7)
+task.wait(0)
 -- Restore normal state
 connection:Disconnect()
 humanoid.AutoRotate = originalAutoRotate
