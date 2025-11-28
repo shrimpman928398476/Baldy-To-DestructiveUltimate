@@ -1178,6 +1178,25 @@ Anim:AdjustSpeed(0)
 Anim.TimePosition = startTime
 
 Anim:AdjustSpeed(0.575)
+wait(0.1)
+
+Players = game:GetService("Players")
+ local speaker = Players.LocalPlayer
+ workspace.CurrentCamera:remove()
+     wait(.1)
+     workspace.CurrentCamera.CameraSubject = speaker.Character:FindFirstChildWhichIsA('Humanoid')
+     workspace.CurrentCamera.CameraType = "Custom"
+     speaker.CameraMinZoomDistance = 0.5
+     speaker.CameraMaxZoomDistance = 400
+     speaker.CameraMode = "Classic"
+     speaker.Character.Head.Anchored = false
+task.wait(0)
+-- Restore normal state
+connection:Disconnect()
+humanoid.AutoRotate = originalAutoRotate
+humanoid.WalkSpeed = 16
+humanoid.JumpPower = 50
+hrp.CFrame = originalCFrame
 
 -- LocalScript
 
