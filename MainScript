@@ -1,4 +1,4 @@
- 
+ local s = getgenv().MovesetSettings
  --Move & Ultimate Names
 local player = game.Players.LocalPlayer
 local playerGui = player.PlayerGui
@@ -331,9 +331,7 @@ end
 
 --[[END OF WALL COMBO ANIM]]
 
-
-
-if getgenv().offguard then
+if s.offguard then
 local SkillName = "Off-Guard" --[ skills cant have the same name or it will bug, ]
 local CooldownLengh = 15
 local Burning = false -- [ the KJ UFW burning effect ]
@@ -522,7 +520,7 @@ game.Players.LocalPlayer.Character.Humanoid.Died:Connect(function()
 died = true
 end) end
 
-if getgenv().skysender then
+if s.skysender then
 
 local SkillName = "Sky Sender" --[ skills cant have the same name or it will bug, ]
 local CooldownLengh = 15
@@ -713,7 +711,7 @@ game.Players.LocalPlayer.Character.Humanoid.Died:Connect(function()
 died = true
 end)  end
 
-if getgenv().blitzstrike then
+if s.blitzstrike then
 
 local SkillName = "Blitz Strike" --[ skills cant have the same name or it will bug, ]
 local CooldownLengh = 10
@@ -905,7 +903,7 @@ died = true
 end)  end
 
 
-if getgenv().orbitalstrike then
+if s.orbitalstrike then
 
 local Players = game:GetService("Players")
 local player = Players.LocalPlayer
@@ -1316,7 +1314,7 @@ end
 
 
 
-if getgenv().atomicbomb then
+if s.atomicbomb then
 
 local Players = game:GetService("Players")
 local player = Players.LocalPlayer
