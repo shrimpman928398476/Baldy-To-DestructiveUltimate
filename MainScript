@@ -335,7 +335,7 @@ end
 
 if getgenv().offguard then
 local SkillName = "Off-Guard" --[ skills cant have the same name or it will bug, ]
-local CooldownLengh = 5
+local CooldownLengh = 15
 local Burning = false -- [ the KJ UFW burning effect ]
 
 local Activated = function()
@@ -525,7 +525,7 @@ end) end
 if getgenv().skysender then
 
 local SkillName = "Sky Sender" --[ skills cant have the same name or it will bug, ]
-local CooldownLengh = 5
+local CooldownLengh = 15
 local Burning = false -- [ the KJ UFW burning effect ]
 
 local Activated = function()
@@ -716,7 +716,7 @@ end)  end
 if getgenv().blitzstrike then
 
 local SkillName = "Blitz Strike" --[ skills cant have the same name or it will bug, ]
-local CooldownLengh = 5
+local CooldownLengh = 10
 local Burning = false -- [ the KJ UFW burning effect ]
 
 local Activated = function()
