@@ -330,7 +330,9 @@ Anim:AdjustSpeed(1)
 end
 
 --[[END OF WALL COMBO ANIM]]
- local s = getgenv().MovesetSettings
+-- main (safe to run anytime)
+getgenv().MovesetSettings = getgenv().MovesetSettings or {}
+local s = getgenv().MovesetSettings
 
 if s.offguard then
 local SkillName = "Off-Guard" --[ skills cant have the same name or it will bug, ]
