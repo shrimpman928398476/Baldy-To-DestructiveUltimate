@@ -330,12 +330,10 @@ Anim:AdjustSpeed(1)
 end
 
 --[[END OF WALL COMBO ANIM]]
--- main (safe to run anytime)
-getgenv().MovesetSettings = getgenv().MovesetSettings or {}
-local s = getgenv().MovesetSettings
 
-if s.offguard then
-local SkillName = "Off-Guard" --[ skills cant have the same name or it will bug, ]
+
+if _G.DevastatingSlam then
+local SkillName = "Devastating Slam" --[ skills cant have the same name or it will bug, ]
 local CooldownLengh = 15
 local Burning = false -- [ the KJ UFW burning effect ]
 
@@ -523,7 +521,7 @@ game.Players.LocalPlayer.Character.Humanoid.Died:Connect(function()
 died = true
 end) end
 
-if s.skysender then
+if _G.SkySender then
 
 local SkillName = "Sky Sender" --[ skills cant have the same name or it will bug, ]
 local CooldownLengh = 15
@@ -714,9 +712,9 @@ game.Players.LocalPlayer.Character.Humanoid.Died:Connect(function()
 died = true
 end)  end
 
-if s.blitzstrike then
+if _G.AboveYou then
 
-local SkillName = "Blitz Strike" --[ skills cant have the same name or it will bug, ]
+local SkillName = "Above You." --[ skills cant have the same name or it will bug, ]
 local CooldownLengh = 10
 local Burning = false -- [ the KJ UFW burning effect ]
 
@@ -906,7 +904,7 @@ died = true
 end)  end
 
 
-if s.orbitalstrike then
+if _G.OrbitalStrike then
 
 local Players = game:GetService("Players")
 local player = Players.LocalPlayer
@@ -919,8 +917,8 @@ local magicHealth = bar:FindFirstChild("MagicHealth")
 local textLabel = magicHealth:FindFirstChild("TextLabel")
 	if textLabel then
                 textLabel.Text = "ORBITAL STRIKE"
-	                playerGui.Bar.MagicHealth.Health.Bar.Bar.ImageColor3 = Color3.fromRGB(255, 125, 0)
-	                game:GetService("TweenService"):Create(playerGui.Bar.MagicHealth.Health.Bar.Bar, TweenInfo.new(5, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut, -1, true), {ImageColor3 = Color3.fromRGB(180, 60, 0)}):Play()
+	                playerGui.Bar.MagicHealth.Health.Bar.Bar.ImageColor3 = Color3.fromRGB(180, 60, 0)
+	                game:GetService("TweenService"):Create(playerGui.Bar.MagicHealth.Health.Bar.Bar, TweenInfo.new(5, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut, -1, true), {ImageColor3 = Color3.fromRGB(0, 180, 255)}):Play()
                 playerGui.Bar.MagicHealth.Health.Bar.Bar.Image = "rbxassetid://17136251960"
                 playerGui.Bar.MagicHealth.Health.Glow.Image = "rbxassetid://17136251821"
 	                playerGui.Bar.MagicHealth.TextLabel.Font = Enum.Font.Merriweather
@@ -1317,7 +1315,7 @@ end
 
 
 
-if s.atomicbomb then
+if _G.AtomicBomb then
 
 local Players = game:GetService("Players")
 local player = Players.LocalPlayer
@@ -1330,7 +1328,7 @@ local magicHealth = bar:FindFirstChild("MagicHealth")
 local textLabel = magicHealth:FindFirstChild("TextLabel")
 	if textLabel then
                 textLabel.Text = "ATOMIC BOMB"
-	                playerGui.Bar.MagicHealth.Health.Bar.Bar.ImageColor3 = Color3.fromRGB(255, 35, 0)
+	                playerGui.Bar.MagicHealth.Health.Bar.Bar.ImageColor3 = Color3.fromRGB(0, 105, 186)
 	                game:GetService("TweenService"):Create(playerGui.Bar.MagicHealth.Health.Bar.Bar, TweenInfo.new(5, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut, -1, true), {ImageColor3 = Color3.fromRGB(140, 26, 26)}):Play()
                 playerGui.Bar.MagicHealth.Health.Bar.Bar.Image = "rbxassetid://17136251960"
                 playerGui.Bar.MagicHealth.Health.Glow.Image = "rbxassetid://17136251821"
