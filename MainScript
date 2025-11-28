@@ -1179,6 +1179,61 @@ Anim.TimePosition = startTime
 
 Anim:AdjustSpeed(0.575)
 
+-- LocalScript
+
+local player = game.Players.LocalPlayer
+local camera = workspace.CurrentCamera
+
+-- Freeze camera so we can control it
+camera.CameraType = Enum.CameraType.Scriptable
+
+-- CONFIGURATION
+local distance = 35      -- how far behind the head
+local heightOffset = 10    -- how far above the head
+local sideOffset = 12      -- left (-) or right (+)
+local lookAtHead = true    -- camera looks at head if true
+local duration = 6.5       -- how long the effect lasts
+
+-- Timer
+local startTime = tick()
+
+task.spawn(function()
+    while true do
+        task.wait()
+
+        -- Stop after duration
+        if tick() - startTime >= duration then
+            camera.CameraType = Enum.CameraType.Custom
+            return
+        end
+
+        local character = player.Character
+        if not character then continue end
+
+        local head = character:FindFirstChild("Head")
+        if not head then continue end
+
+        -- Head position
+        local headPos = head.Position
+
+        -- Direction the head is facing
+        local forward = head.CFrame.LookVector
+
+        -- Camera final position
+        local camPos =
+            headPos
+            - forward * distance
+            + Vector3.new(0, heightOffset, 0)
+            + head.CFrame.RightVector * sideOffset
+
+        if lookAtHead then
+            camera.CFrame = CFrame.new(camPos, headPos)
+        else
+            camera.CFrame = CFrame.new(camPos)
+        end
+    end
+end)
+
 
     end
 
@@ -1515,6 +1570,60 @@ Anim.TimePosition = startTime
 
 Anim:AdjustSpeed(1)
 
+-- LocalScript
+
+local player = game.Players.LocalPlayer
+local camera = workspace.CurrentCamera
+
+-- Freeze camera so we can control it
+camera.CameraType = Enum.CameraType.Scriptable
+
+-- CONFIGURATION
+local distance = 45        -- how far behind the head
+local heightOffset = 5     -- how far above the head
+local sideOffset = 12     -- left (-) or right (+)
+local lookAtHead = true    -- camera looks at head if true
+local duration = 6.5       -- how long the effect lasts
+
+-- Timer
+local startTime = tick()
+
+task.spawn(function()
+    while true do
+        task.wait()
+
+        -- Stop after duration
+        if tick() - startTime >= duration then
+            camera.CameraType = Enum.CameraType.Custom
+            return
+        end
+
+        local character = player.Character
+        if not character then continue end
+
+        local head = character:FindFirstChild("Head")
+        if not head then continue end
+
+        -- Head position
+        local headPos = head.Position
+
+        -- Direction the head is facing
+        local forward = head.CFrame.LookVector
+
+        -- Camera final position
+        local camPos =
+            headPos
+            - forward * distance
+            + Vector3.new(0, heightOffset, 0)
+            + head.CFrame.RightVector * sideOffset
+
+        if lookAtHead then
+            camera.CFrame = CFrame.new(camPos, headPos)
+        else
+            camera.CFrame = CFrame.new(camPos)
+        end
+    end
+end)
 
     end
 
