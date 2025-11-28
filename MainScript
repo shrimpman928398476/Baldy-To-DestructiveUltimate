@@ -981,7 +981,12 @@ Anim:AdjustSpeed(0)
 
 Anim.TimePosition = startTime
 
-Anim:AdjustSpeed(1.35) wait(1.2) Anim:Stop()
+Anim:AdjustSpeed(1.35) wait(1.2) Anim:Stop()   game:GetService("Players").LocalPlayer.Character.Communicate:FireServer(unpack({
+    [1] = {
+        ["Tool"] = game:GetService("Players").LocalPlayer.Backpack["Serious Punch"],
+        ["Goal"] = "Console Move"
+    }
+})) wait(0.1)
 local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
 
@@ -1022,16 +1027,6 @@ local targetHRP = target.Character:WaitForChild("HumanoidRootPart")
 ----------------------------------------------------------
 hrp.CFrame = targetHRP.CFrame
 
-
-----------------------------------------------------------
--- 3. FIRE CONSOLE MOVE NOW (correct position)
-----------------------------------------------------------
-game:GetService("Players").LocalPlayer.Character.Communicate:FireServer(unpack({
-    [1] = {
-        ["Tool"] = game:GetService("Players").LocalPlayer.Backpack["Serious Punch"],
-        ["Goal"] = "Console Move"
-    }
-}))
 
 
 ----------------------------------------------------------
@@ -1318,7 +1313,12 @@ Anim:AdjustSpeed(0)
 
 Anim.TimePosition = startTime
 
-Anim:AdjustSpeed(1.35) wait(1)
+Anim:AdjustSpeed(1.35) wait(1)   game:GetService("Players").LocalPlayer.Character.Communicate:FireServer(unpack({
+    [1] = {
+        ["Tool"] = game:GetService("Players").LocalPlayer.Backpack["Table Flip"],
+        ["Goal"] = "Console Move"
+    }
+}))
 local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
 
@@ -1363,12 +1363,7 @@ hrp.CFrame = targetHRP.CFrame
 ----------------------------------------------------------
 -- 3. FIRE CONSOLE MOVE NOW (correct position)
 ----------------------------------------------------------
-game:GetService("Players").LocalPlayer.Character.Communicate:FireServer(unpack({
-    [1] = {
-        ["Tool"] = game:GetService("Players").LocalPlayer.Backpack["Table Flip"],
-        ["Goal"] = "Console Move"
-    }
-}))
+
 
 
 ----------------------------------------------------------
