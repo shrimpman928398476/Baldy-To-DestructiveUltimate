@@ -1,44 +1,106 @@
+local plr = game.Players.LocalPlayer
 
- --Move & Ultimate Names
-local player = game.Players.LocalPlayer
-local playerGui = player.PlayerGui
-local hotbar = playerGui:FindFirstChild("Hotbar")
+local pGui = plr.PlayerGui
+
+local cam = workspace.CurrentCamera
+
+local mouse = plr:GetMouse()
+
+
+
+local ch = plr.Character
+
+local rt = ch.HumanoidRootPart
+
+local hum = ch:WaitForChild("Humanoid")
+
+local chosenchar = ch:GetAttribute("Character")
+local hotbar = pGui:FindFirstChild("Hotbar")
+
 local backpack = hotbar:FindFirstChild("Backpack")
+
 local hotbarFrame = backpack:FindFirstChild("Hotbar")
-local baseButton = hotbarFrame:FindFirstChild("1").Base
-local ToolName = baseButton.ToolName
 
-ToolName.Text = "Destructive Strike"
+local real1 = hotbarFrame["1"].Base.ToolName:Clone()
 
-local player = game.Players.LocalPlayer
-local playerGui = player.PlayerGui
-local hotbar = playerGui:FindFirstChild("Hotbar")
-local backpack = hotbar:FindFirstChild("Backpack")
-local hotbarFrame = backpack:FindFirstChild("Hotbar")
-local baseButton = hotbarFrame:FindFirstChild("2").Base
-local ToolName = baseButton.ToolName
+	hotbarFrame["1"].Base.ToolName.Visible = false
 
-ToolName.Text = "Calamatic Beatdown"
+	real1.Parent = hotbarFrame["1"].Base
 
-local player = game.Players.LocalPlayer
-local playerGui = player.PlayerGui
-local hotbar = playerGui:FindFirstChild("Hotbar")
-local backpack = hotbar:FindFirstChild("Backpack")
-local hotbarFrame = backpack:FindFirstChild("Hotbar")
-local baseButton = hotbarFrame:FindFirstChild("3").Base
-local ToolName = baseButton.ToolName
+	local real2 = hotbarFrame["2"].Base.ToolName:Clone()
 
-ToolName.Text = "Swift Strikes"
+	hotbarFrame["2"].Base.ToolName.Visible = false
 
-local player = game.Players.LocalPlayer
-local playerGui = player.PlayerGui
-local hotbar = playerGui:FindFirstChild("Hotbar")
-local backpack = hotbar:FindFirstChild("Backpack")
-local hotbarFrame = backpack:FindFirstChild("Hotbar")
-local baseButton = hotbarFrame:FindFirstChild("4").Base
-local ToolName = baseButton.ToolName
+	real2.Parent = hotbarFrame["2"].Base
 
-ToolName.Text = "Heavenly Descent"
+	local real3 = hotbarFrame["3"].Base.ToolName:Clone()
+
+	hotbarFrame["3"].Base.ToolName.Visible = false
+
+	real3.Parent = hotbarFrame["3"].Base
+
+	local real4 = hotbarFrame["4"].Base.ToolName:Clone()
+
+	hotbarFrame["4"].Base.ToolName.Visible = false
+
+	real4.Parent = hotbarFrame["4"].Base
+
+	local num1 = plr.PlayerGui.Hotbar.Backpack.Hotbar["1"]
+
+	local num2 = plr.PlayerGui.Hotbar.Backpack.Hotbar["2"]
+
+	local num3 = plr.PlayerGui.Hotbar.Backpack.Hotbar["3"]
+
+	local num4 = plr.PlayerGui.Hotbar.Backpack.Hotbar["4"]
+
+	
+function basemove()		
+
+		real1.Text = "Destructive Strike"
+
+		real2.Text = "Fist Fusillade"
+
+		real3.Text = "Instant Strikes"
+
+		real4.Text = "Heaven's Descent"
+
+		isult = false
+
+		wait(.1)
+
+		
+
+		local plr = game.Players.LocalPlayer
+
+		for i,v in pairs(plr.Backpack:GetChildren()) do
+
+			print(i,v)
+
+		end
+
+		for i,v in pairs(plr.PlayerGui.Hotbar.Backpack.Hotbar:GetChildren()) do
+
+			print(i,v)
+
+		end
+
+	end
+
+	function ultimatemove()
+
+		isult = true
+
+		real1.Text = "Counter This."
+
+		real2.Text = "Atomic Bomb"
+
+		real3.Text = "Orbital Strike Cannon"
+
+		real4.Text = "True Erasure"
+
+	end
+
+	basemove()
 
 --[[Animations]]
 
