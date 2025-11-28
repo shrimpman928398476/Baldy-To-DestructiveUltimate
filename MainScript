@@ -8,7 +8,7 @@ local hotbarFrame = backpack:FindFirstChild("Hotbar")
 local baseButton = hotbarFrame:FindFirstChild("1").Base
 local ToolName = baseButton.ToolName
 
-ToolName.Text = "Devastating Strike"
+ToolName.Text = "Destructive Strike"
 
 local player = game.Players.LocalPlayer
 local playerGui = player.PlayerGui
