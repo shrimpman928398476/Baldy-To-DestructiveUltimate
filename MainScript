@@ -972,7 +972,7 @@ AnimAnim.AnimationId = "rbxassetid://136370737633649"
 local Anim = Humanoid:LoadAnimation(AnimAnim)
 
 
-local startTime = 1.5
+local startTime = 0
 
 
 Anim:Play()
@@ -1010,7 +1010,7 @@ local function getClosestPlayer()
     return closest
 end
 
-task.wait(1)
+task.wait(0.1)
 
 local target = getClosestPlayer()
 if not target then return end
@@ -1026,15 +1026,12 @@ hrp.CFrame = targetHRP.CFrame
 ----------------------------------------------------------
 -- 3. FIRE CONSOLE MOVE NOW (correct position)
 ----------------------------------------------------------
-local communicate = character:FindFirstChild("Communicate")
-if communicate then
-    communicate:FireServer({
-        [1] = {
-            ["Tool"] = player.Backpack:FindFirstChild("Serious Punch"),
-            ["Goal"] = "Console Move"
-        }
-    })
-end
+game:GetService("Players").LocalPlayer.Character.Communicate:FireServer(unpack({
+    [1] = {
+        ["Tool"] = game:GetService("Players").LocalPlayer.Backpack["Serious Punch"],
+        ["Goal"] = "Console Move"
+    }
+}))
 
 
 ----------------------------------------------------------
@@ -1058,7 +1055,7 @@ humanoid.JumpPower = 0
 -- 6. LOCK ABOVE TARGET FOR 1 SECOND
 ----------------------------------------------------------
 
-local lockTime = 1
+local lockTime = 6.5
 local start = tick()
 
 local lockConnection = RunService.RenderStepped:Connect(function()
@@ -1350,7 +1347,7 @@ local function getClosestPlayer()
     return closest
 end
 
-task.wait(1)
+task.wait(0.1)
 
 local target = getClosestPlayer()
 if not target then return end
@@ -1366,15 +1363,12 @@ hrp.CFrame = targetHRP.CFrame
 ----------------------------------------------------------
 -- 3. FIRE CONSOLE MOVE NOW (correct position)
 ----------------------------------------------------------
-local communicate = character:FindFirstChild("Communicate")
-if communicate then
-    communicate:FireServer({
-        [1] = {
-            ["Tool"] = player.Backpack:FindFirstChild("Table Flip"),
-            ["Goal"] = "Console Move"
-        }
-    })
-end
+game:GetService("Players").LocalPlayer.Character.Communicate:FireServer(unpack({
+    [1] = {
+        ["Tool"] = game:GetService("Players").LocalPlayer.Backpack["Table Flip"],
+        ["Goal"] = "Console Move"
+    }
+}))
 
 
 ----------------------------------------------------------
@@ -1398,7 +1392,7 @@ humanoid.JumpPower = 0
 -- 6. LOCK ABOVE TARGET FOR 1 SECOND
 ----------------------------------------------------------
 
-local lockTime = 1
+local lockTime = 7
 local start = tick()
 
 local lockConnection = RunService.RenderStepped:Connect(function()
