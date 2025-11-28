@@ -147,48 +147,11 @@ Anim.TimePosition = startTime
 
 Anim:AdjustSpeed(0.86)
 
-if _G.M1Reset then
-local args = {
-    [1] = {
-        ["Goal"] = "LeftClick",
-        ["Mobile"] = true
-    }
-}
-local args2 = {
-    [1] = {
-        ["Goal"] = "LeftClickRelease"
-    }
-}
-
-game:GetService("Players").LocalPlayer.Character.Communicate:FireServer(unpack(args))
-game:GetService("Players").LocalPlayer.Character.Communicate:FireServer(unpack(args2))
-wait(0.2)
-local player = game.Players.LocalPlayer
-
-player.CharacterAdded:Connect(function(char)
-    local humanoid = char:WaitForChild("Humanoid")
-
-    -- Trigger a jump (same as spacebar)
-    humanoid.Jump = true
-end)
-
-wait(0.2)
-local args = {
-    [1] = {
-        ["Goal"] = "LeftClick",
-        ["Mobile"] = true
-    }
-}
-local args2 = {
-    [1] = {
-        ["Goal"] = "LeftClickRelease"
-    }
-}
-
-game:GetService("Players").LocalPlayer.Character.Communicate:FireServer(unpack(args))
-game:GetService("Players").LocalPlayer.Character.Communicate:FireServer(unpack(args2))
+if _G.NoBarrageArms then
+local ambatukam = game.Players.LocalPlayer.Character:WaitForChild("BarrageBind")
+ambatukam:Destroy()
 end
-wait(1.25) Anim:Stop()
+wait(1.65) Anim:Stop()
 
     end
 
