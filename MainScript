@@ -1190,7 +1190,13 @@ Players = game:GetService("Players")
      speaker.CameraMode = "Classic"
      speaker.Character.Head.Anchored = false
 task.wait(0)
-
+task.wait(0)
+-- Restore normal state
+connection:Disconnect()
+humanoid.AutoRotate = originalAutoRotate
+humanoid.WalkSpeed = 16
+humanoid.JumpPower = 50
+hrp.CFrame = originalCFrame
     end
 
 end
