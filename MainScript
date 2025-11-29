@@ -60,7 +60,7 @@ function basemove()
 
 		real2.Text = "Fist Fusillade"
 
-		real3.Text = "Instant Strikes"
+		real3.Text = "Whirlwind Strike"
 
 		real4.Text = "Heaven's Descent"
 
@@ -256,12 +256,12 @@ end
 
 local AnimAnim = Instance.new("Animation")
 
-AnimAnim.AnimationId = "rbxassetid://18440406788"
+AnimAnim.AnimationId = "rbxassetid://18179181663"
 
 local Anim = Humanoid:LoadAnimation(AnimAnim)
 
 
-local startTime = 1.1
+local startTime = 0
 
 
 Anim:Play()
@@ -270,15 +270,7 @@ Anim:AdjustSpeed(0)
 
 Anim.TimePosition = startTime
 
-Anim:AdjustSpeed(1.5)
-
-
-delay(1, function()
-
-    Anim:Stop()
-
-end)
-
+Anim:AdjustSpeed(1.35)
 
     end
 
