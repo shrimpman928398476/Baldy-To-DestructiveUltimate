@@ -151,6 +151,116 @@ Anim.TimePosition = startTime
 
 Anim:AdjustSpeed(1)
 
+ local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+
+humanoid.StateChanged:Connect(function(oldState, newState)
+	if newState == Enum.HumanoidStateType.Freefall then
+local Players = game:GetService("Players")
+local localPlayer = Players.LocalPlayer
+
+local function getClosestPlayer()
+    local character = localPlayer.Character or localPlayer.CharacterAdded:Wait()
+    local root = character:WaitForChild("HumanoidRootPart")
+
+    local closestDistance = math.huge
+    local closestPlayer = nil
+
+    for _, player in pairs(Players:GetPlayers()) do
+        if player ~= localPlayer and player.Character then
+            local otherRoot = player.Character:FindFirstChild("HumanoidRootPart")
+            if otherRoot then
+                local distance = (root.Position - otherRoot.Position).Magnitude
+                if distance < closestDistance then
+                    closestDistance = distance
+                    closestPlayer = player
+                end
+            end
+        end
+    end
+
+    return closestPlayer
+end
+
+task.wait(0) -- small delay so characters load
+
+local target = getClosestPlayer()
+if target and target.Character then
+    local targetRoot = target.Character:FindFirstChild("HumanoidRootPart")
+    if targetRoot then
+        localPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = targetRoot.CFrame
+        print("Teleported to closest player:", target.Name)
+    end
+end
+    local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+
+local player = Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+local hrp = character:WaitForChild("HumanoidRootPart")
+
+-- Function: find closest player
+local function getClosestPlayer()
+    local closest = nil
+    local shortest = math.huge
+    
+    for _, plr in ipairs(Players:GetPlayers()) do
+        if plr ~= player and plr.Character and plr.Character:FindFirstChild("HumanoidRootPart") then
+            local dist = (plr.Character.HumanoidRootPart.Position - hrp.Position).Magnitude
+            if dist < shortest then
+                closest = plr
+                shortest = dist
+            end
+        end
+    end
+
+    return closest
+end
+
+-- Begin action -------------------------------------------------------
+
+local target = getClosestPlayer()
+if not target then return end
+
+local targetHRP = target.Character.HumanoidRootPart
+
+-- Store original states
+local originalCFrame = hrp.CFrame
+local originalAutoRotate = humanoid.AutoRotate
+
+-- Disable rotation systems
+humanoid.AutoRotate = false
+humanoid.WalkSpeed = 0
+humanoid.JumpPower = 0
+
+-- Face down (180 degrees on X)
+local faceDown = CFrame.Angles(math.rad(-90), 0, 0)
+
+-- KEEP POSITION LOCKED FOR 1 SECOND
+local connection
+connection = RunService.RenderStepped:Connect(function()
+    -- 5 studs above closest player
+    local lockPos = targetHRP.Position + Vector3.new(0, 5.5, 0)
+    
+    -- Apply the rotation + locked position
+    hrp.CFrame = CFrame.new(lockPos) * faceDown
+    
+    -- Zero angular rotation
+    hrp.AssemblyAngularVelocity = Vector3.zero
+end)
+task.wait(1.2)
+
+-- Restore normal state
+connection:Disconnect()
+humanoid.AutoRotate = originalAutoRotate
+humanoid.WalkSpeed = 16
+humanoid.JumpPower = 50
+hrp.CFrame = originalCFrame
+	end
+end)
 
     end
 
