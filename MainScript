@@ -380,7 +380,7 @@ Anim:AdjustSpeed(0)
 
 Anim.TimePosition = startTime
 
-Anim:AdjustSpeed(1)
+Anim:AdjustSpeed(1.25)
 wait(1.25)
 Anim:Stop()
 local AnimAnim = Instance.new("Animation")
@@ -399,7 +399,7 @@ Anim:AdjustSpeed(0)
 
 Anim.TimePosition = startTime
 
-Anim:AdjustSpeed(1)
+Anim:AdjustSpeed(1.5)
 
     end
 
