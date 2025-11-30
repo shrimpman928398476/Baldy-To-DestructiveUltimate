@@ -391,7 +391,7 @@ local Character = game.Players.LocalPlayer.Character or game.Players.LocalPlayer
 function Cinematic(moduleData)
     local CinematicsModule = moduleData
     local CurrentCameraCFrame = Camera.CFrame
-    local FrameTime = 390
+    local FrameTime = 240
     local Connection
 wait(1.25)
 Anim:Stop()
