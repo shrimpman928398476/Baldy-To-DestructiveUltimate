@@ -381,6 +381,18 @@ Anim:AdjustSpeed(0)
 Anim.TimePosition = startTime
 
 Anim:AdjustSpeed(1.175)
+
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local Camera = game.Workspace.CurrentCamera
+local RunService = game:GetService("RunService")
+local TweenService = game:GetService("TweenService")
+local Character = game.Players.LocalPlayer.Character or game.Players.LocalPlayer.CharacterAdded:Wait()
+
+function Cinematic(moduleData)
+    local CinematicsModule = moduleData
+    local CurrentCameraCFrame = Camera.CFrame
+    local FrameTime = 120
+    local Connection
 wait(1.25)
 Anim:Stop()
 local AnimAnim = Instance.new("Animation")
@@ -400,18 +412,6 @@ Anim:AdjustSpeed(0)
 Anim.TimePosition = startTime
 
 Anim:AdjustSpeed(1.5)
-local ReplicatedStorage = game:GetService("ReplicatedStorage")
-local Camera = game.Workspace.CurrentCamera
-local RunService = game:GetService("RunService")
-local TweenService = game:GetService("TweenService")
-local Character = game.Players.LocalPlayer.Character or game.Players.LocalPlayer.CharacterAdded:Wait()
-
-function Cinematic(moduleData)
-    local CinematicsModule = moduleData
-    local CurrentCameraCFrame = Camera.CFrame
-    local FrameTime = 0
-    local Connection
-
     Character.Humanoid.AutoRotate = false
     Camera.CameraType = Enum.CameraType.Scriptable
     
