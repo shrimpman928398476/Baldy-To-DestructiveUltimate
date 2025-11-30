@@ -391,7 +391,7 @@ local Character = game.Players.LocalPlayer.Character or game.Players.LocalPlayer
 function Cinematic(moduleData)
     local CinematicsModule = moduleData
     local CurrentCameraCFrame = Camera.CFrame
-    local FrameTime = 370
+    local FrameTime = 325
     local Connection
 wait(1.25)
 Anim:Stop()
@@ -416,7 +416,7 @@ Anim:AdjustSpeed(1.5)
     Camera.CameraType = Enum.CameraType.Scriptable
     
     Connection = RunService.RenderStepped:Connect(function(DT)
-        FrameTime += DT * 100
+        FrameTime += DT * 60
         local NeededFrame = CinematicsModule[math.ceil(FrameTime)]
 
         if NeededFrame then
