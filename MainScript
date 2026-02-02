@@ -466,14 +466,14 @@ local localPlayer = Players.LocalPlayer
 
 local function getClosestPlayer()
     local character = localPlayer.Character or localPlayer.CharacterAdded:Wait()
-    local root = character:WaitForChild("HumanoidRootPart")
+    local root = character:WaitForChild("Humanoid")
 
     local closestDistance = math.huge
     local closestPlayer = nil
 
     for _, player in pairs(Players:GetPlayers()) do
         if player ~= localPlayer and player.Character then
-            local otherRoot = player.Character:FindFirstChild("HumanoidRootPart")
+            local otherRoot = player.Character:FindFirstChild("Humanoid")
             if otherRoot then
                 local distance = (root.Position - otherRoot.Position).Magnitude
                 if distance < closestDistance then
@@ -491,7 +491,7 @@ task.wait(0) -- small delay so characters load
 
 local target = getClosestPlayer()
 if target and target.Character then
-    local targetRoot = target.Character:FindFirstChild("HumanoidRootPart")
+    local targetRoot = target.Character:FindFirstChild("Humanoid")
     if targetRoot then
         localPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = targetRoot.CFrame
         print("Teleported to closest player:", target.Name)
@@ -503,7 +503,7 @@ local RunService = game:GetService("RunService")
 local player = Players.LocalPlayer
 local character = player.Character or player.CharacterAdded:Wait()
 local humanoid = character:WaitForChild("Humanoid")
-local hrp = character:WaitForChild("HumanoidRootPart")
+local hrp = character:WaitForChild("Humanoid")
 
 -- Function: find closest player
 local function getClosestPlayer()
@@ -528,7 +528,7 @@ end
 local target = getClosestPlayer()
 if not target then return end
 
-local targetHRP = target.Character.HumanoidRootPart
+local targetHRP = target.Character.Humanoid
 
 -- Store original states
 local originalCFrame = hrp.CFrame
@@ -630,6 +630,7 @@ local Kmg = {
     ["9"] = Enum.KeyCode.Nine,
     ["0"] = Enum.KeyCode.Zero
 }
+local ks = "5"
 local kb = Kmg[ks]
 
 local uis = game:GetService("UserInputService") local con = uis.InputBegan:Connect(function(input) if input.KeyCode == kb then
@@ -681,9 +682,9 @@ task.wait(0.1) -- small delay so characters load
 
 local target = getClosestPlayer()
 if target and target.Character then
-    local targetRoot = target.Character:FindFirstChild("HumanoidRootPart")
+    local targetRoot = target.Character:FindFirstChild("Humanoid")
     if targetRoot then
-        localPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = targetRoot.CFrame
+        localPlayer.Character:WaitForChild("Humanoid").CFrame = targetRoot.CFrame
         print("Teleported to closest player:", target.Name)
     end
 end
@@ -693,7 +694,7 @@ local RunService = game:GetService("RunService")
 local player = Players.LocalPlayer
 local character = player.Character or player.CharacterAdded:Wait()
 local humanoid = character:WaitForChild("Humanoid")
-local hrp = character:WaitForChild("HumanoidRootPart")
+local hrp = character:WaitForChild("Humanoid")
 
 -- Function: find closest player
 local function getClosestPlayer()
@@ -701,8 +702,8 @@ local function getClosestPlayer()
     local shortest = math.huge
     
     for _, plr in ipairs(Players:GetPlayers()) do
-        if plr ~= player and plr.Character and plr.Character:FindFirstChild("HumanoidRootPart") then
-            local dist = (plr.Character.HumanoidRootPart.Position - hrp.Position).Magnitude
+        if plr ~= player and plr.Character and plr.Character:FindFirstChild("Humanoid") then
+            local dist = (plr.Character.Humanoid.Position - hrp.Position).Magnitude
             if dist < shortest then
                 closest = plr
                 shortest = dist
@@ -718,7 +719,7 @@ end
 local target = getClosestPlayer()
 if not target then return end
 
-local targetHRP = target.Character.HumanoidRootPart
+local targetHRP = target.Character.Humanoid
 
 -- Store original states
 local originalCFrame = hrp.CFrame
