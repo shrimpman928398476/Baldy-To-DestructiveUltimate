@@ -922,13 +922,13 @@ humanoid.WalkSpeed = 0
 humanoid.JumpPower = 0
 
 -- Face down (180 degrees on X)
-local faceDown = CFrame.Angles(math.rad(-90), 0, 0)
+local faceDown = CFrame.Angles(math.rad(0), 0, 180)
 
 -- KEEP POSITION LOCKED FOR 1 SECOND
 local connection
 connection = RunService.RenderStepped:Connect(function()
     -- 5 studs above closest player
-    local lockPos = targetHRP.Position + Vector3.new(0, 4.5, 0)
+    local lockPos = targetHRP.Position + Vector3.new(0, 0, -3.75)
     
     -- Apply the rotation + locked position
     hrp.CFrame = CFrame.new(lockPos) * faceDown
