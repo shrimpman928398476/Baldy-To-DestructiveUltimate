@@ -922,7 +922,7 @@ humanoid.WalkSpeed = 0
 humanoid.JumpPower = 0
 
 -- Face down (180 degrees on X)
-local faceDown = CFrame.Angles(math.rad(0), 0, 180)
+local faceDown = CFrame.Angles(math.rad(0), 0, 0)
 
 -- KEEP POSITION LOCKED FOR 1 SECOND
 local connection
