@@ -1543,6 +1543,1550 @@ humanoid.WalkSpeed = 0
 humanoid.JumpPower = 0
 
 -- Face down (180 degrees on X)
+local faceDown = CFrame.Angles(math.rad(-90), 0, 0)local plr = game.Players.LocalPlayer
+
+local pGui = plr.PlayerGui
+
+local cam = workspace.CurrentCamera
+
+local mouse = plr:GetMouse()
+
+
+
+local ch = plr.Character
+
+local rt = ch.HumanoidRootPart
+
+local hum = ch:WaitForChild("Humanoid")
+
+local chosenchar = ch:GetAttribute("Character")
+local hotbar = pGui:FindFirstChild("Hotbar")
+
+local backpack = hotbar:FindFirstChild("Backpack")
+
+local hotbarFrame = backpack:FindFirstChild("Hotbar")
+
+local real1 = hotbarFrame["1"].Base.ToolName:Clone()
+
+	hotbarFrame["1"].Base.ToolName.Visible = false
+
+	real1.Parent = hotbarFrame["1"].Base
+
+	local real2 = hotbarFrame["2"].Base.ToolName:Clone()
+
+	hotbarFrame["2"].Base.ToolName.Visible = false
+
+	real2.Parent = hotbarFrame["2"].Base
+
+	local real3 = hotbarFrame["3"].Base.ToolName:Clone()
+
+	hotbarFrame["3"].Base.ToolName.Visible = false
+
+	real3.Parent = hotbarFrame["3"].Base
+
+	local real4 = hotbarFrame["4"].Base.ToolName:Clone()
+
+	hotbarFrame["4"].Base.ToolName.Visible = false
+
+	real4.Parent = hotbarFrame["4"].Base
+
+	local num1 = plr.PlayerGui.Hotbar.Backpack.Hotbar["1"]
+
+	local num2 = plr.PlayerGui.Hotbar.Backpack.Hotbar["2"]
+
+	local num3 = plr.PlayerGui.Hotbar.Backpack.Hotbar["3"]
+
+	local num4 = plr.PlayerGui.Hotbar.Backpack.Hotbar["4"]
+
+	
+function basemove()		
+
+		real1.Text = "Destructive Strike"
+
+		real2.Text = "Fist Fusillade"
+
+		real3.Text = "Whirlwind Strike"
+
+		real4.Text = "Heaven's Descent"
+
+		isult = false
+
+		wait(.1)
+
+		
+
+		local plr = game.Players.LocalPlayer
+
+		for i,v in pairs(plr.Backpack:GetChildren()) do
+
+			print(i,v)
+
+		end
+
+		for i,v in pairs(plr.PlayerGui.Hotbar.Backpack.Hotbar:GetChildren()) do
+
+			print(i,v)
+
+		end
+
+	end
+
+	function ultimatemove()
+
+		isult = true
+
+		real1.Text = "Counter This."
+
+		real2.Text = "Atomic Bomb"
+
+		real3.Text = "Orbital Strike Cannon"
+
+		real4.Text = "True Erasure"
+
+	end
+
+	basemove()
+
+--[[Animations]]
+
+--[[Move 1]]
+
+local animationId = 10468665991
+
+
+local player = game.Players.LocalPlayer
+
+local character = player.Character or player.CharacterAdded:Wait()
+
+local humanoid = character:WaitForChild("Humanoid")
+
+
+local function onAnimationPlayed(animationTrack)
+
+    if animationTrack.Animation.AnimationId == "rbxassetid://" .. animationId then
+
+
+local p = game.Players.LocalPlayer
+
+local Humanoid = p.Character:WaitForChild("Humanoid")
+
+
+for _, animTrack in pairs(Humanoid:GetPlayingAnimationTracks()) do
+
+    animTrack:Stop()
+
+end
+
+
+local AnimAnim = Instance.new("Animation")
+
+AnimAnim.AnimationId = "rbxassetid://140164642047188"
+
+local Anim = Humanoid:LoadAnimation(AnimAnim)
+
+
+local startTime = 6.86
+
+
+Anim:Play()
+
+Anim:AdjustSpeed(0)
+
+Anim.TimePosition = startTime
+
+Anim:AdjustSpeed(1)
+
+    end
+
+end
+
+--[[END OF MOVE 1 ANIM]]
+
+--[[Move 2]]
+
+
+humanoid.AnimationPlayed:Connect(onAnimationPlayed)
+
+
+local animationId = 10466974800
+
+
+local player = game.Players.LocalPlayer
+
+local character = player.Character or player.CharacterAdded:Wait()
+
+local humanoid = character:WaitForChild("Humanoid")
+
+
+local function onAnimationPlayed(animationTrack)
+
+    if animationTrack.Animation.AnimationId == "rbxassetid://" .. animationId then
+
+
+local p = game.Players.LocalPlayer
+
+local Humanoid = p.Character:WaitForChild("Humanoid")
+
+
+for _, animTrack in pairs(Humanoid:GetPlayingAnimationTracks()) do
+
+    animTrack:Stop()
+
+end
+
+
+local AnimAnim = Instance.new("Animation")
+
+AnimAnim.AnimationId = "rbxassetid://12460977270"
+
+local Anim = Humanoid:LoadAnimation(AnimAnim)
+
+
+local startTime = 0
+
+
+Anim:Play()
+
+Anim:AdjustSpeed(1)
+
+Anim.TimePosition = startTime
+
+Anim:AdjustSpeed(0.86)
+
+if _G.NoBarrageArms then
+local ambatukam = game.Players.LocalPlayer.Character:WaitForChild("BarrageBind")
+ambatukam:Destroy()
+end
+wait(1.65) Anim:Stop()
+
+    end
+
+end
+
+--[[END OF MOVE 2 ANIM]]
+
+--[[Move 3]]
+
+
+humanoid.AnimationPlayed:Connect(onAnimationPlayed)
+
+
+local animationId = 10471336737
+
+
+local player = game.Players.LocalPlayer
+
+local character = player.Character or player.CharacterAdded:Wait()
+
+local humanoid = character:WaitForChild("Humanoid")
+
+
+local function onAnimationPlayed(animationTrack)
+
+    if animationTrack.Animation.AnimationId == "rbxassetid://" .. animationId then
+
+
+local p = game.Players.LocalPlayer
+
+local Humanoid = p.Character:WaitForChild("Humanoid")
+
+
+for _, animTrack in pairs(Humanoid:GetPlayingAnimationTracks()) do
+
+    animTrack:Stop()
+
+end
+
+
+local AnimAnim = Instance.new("Animation")
+
+AnimAnim.AnimationId = "rbxassetid://18179181663"
+
+local Anim = Humanoid:LoadAnimation(AnimAnim)
+
+
+local startTime = 0
+
+
+Anim:Play()
+
+Anim:AdjustSpeed(0)
+
+Anim.TimePosition = startTime
+
+Anim:AdjustSpeed(1.35)
+
+    end
+
+end
+
+--[[END OF MOVE 3 ANIM]]
+
+--[[Move 4]]
+
+
+humanoid.AnimationPlayed:Connect(onAnimationPlayed)
+
+
+local animationId = 12510170988
+
+
+local player = game.Players.LocalPlayer
+
+local character = player.Character or player.CharacterAdded:Wait()
+
+local humanoid = character:WaitForChild("Humanoid")
+
+
+local function onAnimationPlayed(animationTrack)
+
+    if animationTrack.Animation.AnimationId == "rbxassetid://" .. animationId then
+
+local p = game.Players.LocalPlayer
+
+local Humanoid = p.Character:WaitForChild("Humanoid")
+
+
+for _, animTrack in pairs(Humanoid:GetPlayingAnimationTracks()) do
+
+    animTrack:Stop()
+
+end
+
+
+local AnimAnim = Instance.new("Animation")
+
+AnimAnim.AnimationId = "rbxassetid://13497875049"
+
+local Anim = Humanoid:LoadAnimation(AnimAnim)
+
+
+local startTime = 0
+
+
+Anim:Play()
+
+Anim:AdjustSpeed(0)
+
+Anim.TimePosition = startTime
+
+Anim:AdjustSpeed(1.5)
+
+
+    end
+
+end
+
+--[[END OF MOVE 4 ANIM]]
+
+--[[Wall combo]]
+
+humanoid.AnimationPlayed:Connect(onAnimationPlayed)
+
+local animationId = 15955393872
+
+
+local player = game.Players.LocalPlayer
+
+local character = player.Character or player.CharacterAdded:Wait()
+
+local humanoid = character:WaitForChild("Humanoid")
+
+
+local function onAnimationPlayed(animationTrack)
+
+    if animationTrack.Animation.AnimationId == "rbxassetid://" .. animationId then
+
+local p = game.Players.LocalPlayer
+
+local Humanoid = p.Character:WaitForChild("Humanoid")
+
+
+for _, animTrack in pairs(Humanoid:GetPlayingAnimationTracks()) do
+
+    animTrack:Stop()
+
+end
+
+
+local AnimAnim = Instance.new("Animation")
+
+AnimAnim.AnimationId = "rbxassetid://76530443909428"
+
+local Anim = Humanoid:LoadAnimation(AnimAnim)
+
+
+local startTime = 0
+
+
+Anim:Play()
+
+Anim:AdjustSpeed(0)
+
+Anim.TimePosition = startTime
+
+Anim:AdjustSpeed(1.175)
+
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local Camera = game.Workspace.CurrentCamera
+local RunService = game:GetService("RunService")
+local TweenService = game:GetService("TweenService")
+local Character = game.Players.LocalPlayer.Character or game.Players.LocalPlayer.CharacterAdded:Wait()
+
+function Cinematic(moduleData)
+    local CinematicsModule = moduleData
+    local CurrentCameraCFrame = Camera.CFrame
+    local FrameTime = 280
+    local Connection
+wait(1.25)
+Anim:Stop()
+local AnimAnim = Instance.new("Animation")
+
+AnimAnim.AnimationId = "rbxassetid://140164642047188"
+
+local Anim = Humanoid:LoadAnimation(AnimAnim)
+
+
+local startTime = 5.55
+
+
+Anim:Play()
+
+Anim:AdjustSpeed(0)
+
+Anim.TimePosition = startTime
+
+Anim:AdjustSpeed(1.5)
+    Character.Humanoid.AutoRotate = false
+    Camera.CameraType = Enum.CameraType.Scriptable
+    
+    Connection = RunService.RenderStepped:Connect(function(DT)
+        FrameTime += DT * 60
+        local NeededFrame = CinematicsModule[math.ceil(FrameTime)]
+
+        if NeededFrame then
+            TweenService:Create(Camera, TweenInfo.new(0.015, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {
+                CFrame = Character.HumanoidRootPart.CFrame * NeededFrame.cframe
+            }):Play()
+            Camera.FieldOfView = NeededFrame.fov
+        else
+            Connection:Disconnect()
+            Camera.FieldOfView = 70
+            Character.Humanoid.AutoRotate = true
+            Camera.CameraType = Enum.CameraType.Custom
+            Camera.CFrame = CurrentCameraCFrame    
+        end
+    end)
+end
+
+local moduleScript = ReplicatedStorage:WaitForChild("Cutscenes"):WaitForChild("KJ")
+local cutsceneData = require(moduleScript)  
+
+print("Cutscene data:", cutsceneData)
+
+wait(0.2)
+
+Cinematic(cutsceneData)
+
+wait(5)
+Character.HumanoidRootPart.Anchored = false
+
+
+    end
+
+end
+
+--[[END OF WALL COMBO ANIM]]
+
+
+if _G.DevastatingSlam then
+local SkillName = "Devastating Slam" --[ skills cant have the same name or it will bug, ]
+local CooldownLengh = 15
+local Burning = false -- [ the KJ UFW burning effect ]
+
+local Activated = function()
+
+local Players = game:GetService("Players")
+local localPlayer = Players.LocalPlayer
+
+local function getClosestPlayer()
+    local character = localPlayer.Character or localPlayer.CharacterAdded:Wait()
+    local root = character:WaitForChild("HumanoidRootPart")
+
+    local closestDistance = math.huge
+    local closestPlayer = nil
+
+    for _, player in pairs(Players:GetPlayers()) do
+        if player ~= localPlayer and player.Character then
+            local otherRoot = player.Character:FindFirstChild("HumanoidRootPart")
+            if otherRoot then
+                local distance = (root.Position - otherRoot.Position).Magnitude
+                if distance < closestDistance then
+                    closestDistance = distance
+                    closestPlayer = player
+                end
+            end
+        end
+    end
+
+    return closestPlayer
+end
+
+task.wait(0) -- small delay so characters load
+
+local target = getClosestPlayer()
+if target and target.Character then
+    local targetRoot = target.Character:FindFirstChild("HumanoidRootPart")
+    if targetRoot then
+        localPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = targetRoot.CFrame
+        print("Teleported to closest player:", target.Name)
+    end
+end
+    local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+
+local player = Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+local hrp = character:WaitForChild("HumanoidRootPart")
+
+-- Function: find closest player
+local function getClosestPlayer()
+    local closest = nil
+    local shortest = math.huge
+    
+    for _, plr in ipairs(Players:GetPlayers()) do
+        if plr ~= player and plr.Character and plr.Character:FindFirstChild("HumanoidRootPart") then
+            local dist = (plr.Character.HumanoidRootPart.Position - hrp.Position).Magnitude
+            if dist < shortest then
+                closest = plr
+                shortest = dist
+            end
+        end
+    end
+
+    return closest
+end
+
+-- Begin action -------------------------------------------------------
+
+local target = getClosestPlayer()
+if not target then return end
+
+local targetHRP = target.Character.HumanoidRootPart
+
+-- Store original states
+local originalCFrame = hrp.CFrame
+local originalAutoRotate = humanoid.AutoRotate
+
+-- Disable rotation systems
+humanoid.AutoRotate = false
+humanoid.WalkSpeed = 0
+humanoid.JumpPower = 0
+
+-- Face down (180 degrees on X)
+local faceDown = CFrame.Angles(math.rad(-90), 0, 0)
+
+-- KEEP POSITION LOCKED FOR 1 SECOND
+local connection
+connection = RunService.RenderStepped:Connect(function()
+    -- 5 studs above closest player
+    local lockPos = targetHRP.Position + Vector3.new(0, 5.5, 0)
+    
+    -- Apply the rotation + locked position
+    hrp.CFrame = CFrame.new(lockPos) * faceDown
+    
+    -- Zero angular rotation
+    hrp.AssemblyAngularVelocity = Vector3.zero
+end)
+game:GetService("Players").LocalPlayer.Character.Communicate:FireServer(unpack({
+    [1] = {
+        ["Tool"] = game:GetService("Players").LocalPlayer.Backpack["Normal Punch"],
+        ["Goal"] = "Console Move"
+    }
+}))
+task.wait(1.2)
+
+-- Restore normal state
+connection:Disconnect()
+humanoid.AutoRotate = originalAutoRotate
+humanoid.WalkSpeed = 16
+humanoid.JumpPower = 50
+hrp.CFrame = originalCFrame
+
+end
+
+-- [[ THE CODE, MODIFY IF YOU WANT. ]]
+local SkillTemplate = Instance.new("Tool")
+SkillTemplate.Name = SkillName
+SkillTemplate.RequiresHandle = false
+SkillTemplate.ManualActivationOnly = false
+SkillTemplate.CanBeDropped = false
+SkillTemplate:SetAttribute("Regged", false)
+SkillTemplate:SetAttribute("Skill", true)
+SkillTemplate.Parent = game.Players.LocalPlayer.Backpack
+local ks = "5"
+local OnCooldown = false
+local cooldownFunction = function()
+OnCooldown = true
+local cd = game:GetService("Players").LocalPlayer.PlayerGui.Hotbar.Backpack.LocalScript.Cooldown:Clone()
+for _, slot in pairs(game:GetService("Players").LocalPlayer.PlayerGui.Hotbar.Backpack.Hotbar:GetDescendants()) do
+    if slot:IsA("TextLabel") and slot.Name == "ToolName" and slot.Text == SkillName then
+	ks = "" .. slot.Parent.Parent.Name
+cd.Parent = slot.Parent
+local cdTween = game:GetService("TweenService"):Create(cd, TweenInfo.new(CooldownLengh), {Size = UDim2.new(1, 0, -0.12, 0)})
+cdTween:Play()
+cdTween.Completed:Connect(function()
+OnCooldown = false
+cd:Destroy()
+slot.Parent.BackgroundColor3 = Color3.fromRGB(26, 125, 255)
+game:GetService("TweenService"):Create(slot.Parent, TweenInfo.new(1), {BackgroundColor3 = Color3.fromRGB(31, 31, 31)}):Play()
+end)
+    end
+end
+end
+
+local cd = game:GetService("Players").LocalPlayer.PlayerGui.Hotbar.Backpack.LocalScript.Cooldown:Clone()
+for _, slot in pairs(game:GetService("Players").LocalPlayer.PlayerGui.Hotbar.Backpack.Hotbar:GetDescendants()) do
+    if slot:IsA("TextLabel") and slot.Name == "ToolName" and slot.Text == SkillName then
+	if Burning then
+	local fireLiterally = game:GetService("Players").LocalPlayer.PlayerGui.Hotbar.Backpack.LocalScript.Flipbook:Clone()
+fireLiterally.Parent = slot.Parent
+fireLiterally.LocalScript.Enabled = true
+end
+	slot.Parent.MouseButton1Click:Connect(function()
+	if not OnCooldown then
+cooldownFunction()
+Activated()
+end
+	end)
+	end
+end
+
+local Kmg = {
+    ["1"] = Enum.KeyCode.One,
+    ["2"] = Enum.KeyCode.Two,
+    ["3"] = Enum.KeyCode.Three,
+    ["4"] = Enum.KeyCode.Four,
+    ["5"] = Enum.KeyCode.Five,
+    ["6"] = Enum.KeyCode.Six,
+    ["7"] = Enum.KeyCode.Seven,
+    ["8"] = Enum.KeyCode.Eight,
+    ["9"] = Enum.KeyCode.Nine,
+    ["0"] = Enum.KeyCode.Zero
+}
+local kb = Kmg[ks]
+
+local uis = game:GetService("UserInputService") local con = uis.InputBegan:Connect(function(input) if input.KeyCode == kb then
+if not OnCooldown and game:GetService("Players").LocalPlayer.PlayerGui.Chat.Frame.ChatBarParentFrame.Frame.BoxFrame.Frame.TextLabel.Visible then
+cooldownFunction()
+Activated()
+end
+ end end) game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Died:Connect(function() con:Disconnect() end)
+
+game.Players.LocalPlayer.Character.Humanoid.Died:Connect(function()
+died = true
+end) end
+
+if _G.SkySender then
+
+local SkillName = "Sky Sender" --[ skills cant have the same name or it will bug, ]
+local CooldownLengh = 15
+local Burning = false -- [ the KJ UFW burning effect ]
+
+local Activated = function()
+
+local Players = game:GetService("Players")
+local localPlayer = Players.LocalPlayer
+
+local function getClosestPlayer()
+    local character = localPlayer.Character or localPlayer.CharacterAdded:Wait()
+    local root = character:WaitForChild("HumanoidRootPart")
+
+    local closestDistance = math.huge
+    local closestPlayer = nil
+
+    for _, player in pairs(Players:GetPlayers()) do
+        if player ~= localPlayer and player.Character then
+            local otherRoot = player.Character:FindFirstChild("HumanoidRootPart")
+            if otherRoot then
+                local distance = (root.Position - otherRoot.Position).Magnitude
+                if distance < closestDistance then
+                    closestDistance = distance
+                    closestPlayer = player
+                end
+            end
+        end
+    end
+
+    return closestPlayer
+end
+
+task.wait(0.1) -- small delay so characters load
+
+local target = getClosestPlayer()
+if target and target.Character then
+    local targetRoot = target.Character:FindFirstChild("HumanoidRootPart")
+    if targetRoot then
+        localPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = targetRoot.CFrame
+        print("Teleported to closest player:", target.Name)
+    end
+end
+    local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+
+local player = Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+local hrp = character:WaitForChild("HumanoidRootPart")
+
+-- Function: find closest player
+local function getClosestPlayer()
+    local closest = nil
+    local shortest = math.huge
+    
+    for _, plr in ipairs(Players:GetPlayers()) do
+        if plr ~= player and plr.Character and plr.Character:FindFirstChild("HumanoidRootPart") then
+            local dist = (plr.Character.HumanoidRootPart.Position - hrp.Position).Magnitude
+            if dist < shortest then
+                closest = plr
+                shortest = dist
+            end
+        end
+    end
+
+    return closest
+end
+
+-- Begin action -------------------------------------------------------
+
+local target = getClosestPlayer()
+if not target then return end
+
+local targetHRP = target.Character.HumanoidRootPart
+
+-- Store original states
+local originalCFrame = hrp.CFrame
+local originalAutoRotate = humanoid.AutoRotate
+
+-- Disable rotation systems
+humanoid.AutoRotate = false
+humanoid.WalkSpeed = 0
+humanoid.JumpPower = 0
+
+-- Face down (180 degrees on X)
+local faceDown = CFrame.Angles(math.rad(90), 0, 0)
+
+-- KEEP POSITION LOCKED FOR 1 SECOND
+local connection
+connection = RunService.RenderStepped:Connect(function()
+    -- 5 studs above closest player
+    local lockPos = targetHRP.Position + Vector3.new(0, -4.5, 0)
+    
+    -- Apply the rotation + locked position
+    hrp.CFrame = CFrame.new(lockPos) * faceDown
+    
+    -- Zero angular rotation
+    hrp.AssemblyAngularVelocity = Vector3.zero
+end)
+game:GetService("Players").LocalPlayer.Character.Communicate:FireServer(unpack({
+    [1] = {
+        ["Tool"] = game:GetService("Players").LocalPlayer.Backpack["Normal Punch"],
+        ["Goal"] = "Console Move"
+    }
+}))
+task.wait(1.2)
+
+-- Restore normal state
+connection:Disconnect()
+humanoid.AutoRotate = originalAutoRotate
+humanoid.WalkSpeed = 16
+humanoid.JumpPower = 50
+hrp.CFrame = originalCFrame
+
+
+end
+
+-- [[ THE CODE, MODIFY IF YOU WANT. ]]
+local SkillTemplate = Instance.new("Tool")
+SkillTemplate.Name = SkillName
+SkillTemplate.RequiresHandle = false
+SkillTemplate.ManualActivationOnly = false
+SkillTemplate.CanBeDropped = false
+SkillTemplate:SetAttribute("Regged", false)
+SkillTemplate:SetAttribute("Skill", true)
+SkillTemplate.Parent = game.Players.LocalPlayer.Backpack
+local ks = "5"
+local OnCooldown = false
+local cooldownFunction = function()
+OnCooldown = true
+local cd = game:GetService("Players").LocalPlayer.PlayerGui.Hotbar.Backpack.LocalScript.Cooldown:Clone()
+for _, slot in pairs(game:GetService("Players").LocalPlayer.PlayerGui.Hotbar.Backpack.Hotbar:GetDescendants()) do
+    if slot:IsA("TextLabel") and slot.Name == "ToolName" and slot.Text == SkillName then
+	ks = "" .. slot.Parent.Parent.Name
+cd.Parent = slot.Parent
+local cdTween = game:GetService("TweenService"):Create(cd, TweenInfo.new(CooldownLengh), {Size = UDim2.new(1, 0, -0.12, 0)})
+cdTween:Play()
+cdTween.Completed:Connect(function()
+OnCooldown = false
+cd:Destroy()
+slot.Parent.BackgroundColor3 = Color3.fromRGB(26, 125, 255)
+game:GetService("TweenService"):Create(slot.Parent, TweenInfo.new(1), {BackgroundColor3 = Color3.fromRGB(31, 31, 31)}):Play()
+end)
+    end
+end
+end
+
+local cd = game:GetService("Players").LocalPlayer.PlayerGui.Hotbar.Backpack.LocalScript.Cooldown:Clone()
+for _, slot in pairs(game:GetService("Players").LocalPlayer.PlayerGui.Hotbar.Backpack.Hotbar:GetDescendants()) do
+    if slot:IsA("TextLabel") and slot.Name == "ToolName" and slot.Text == SkillName then
+	if Burning then
+	local fireLiterally = game:GetService("Players").LocalPlayer.PlayerGui.Hotbar.Backpack.LocalScript.Flipbook:Clone()
+fireLiterally.Parent = slot.Parent
+fireLiterally.LocalScript.Enabled = true
+end
+	slot.Parent.MouseButton1Click:Connect(function()
+	if not OnCooldown then
+cooldownFunction()
+Activated()
+end
+	end)
+	end
+end
+
+local Kmg = {
+    ["1"] = Enum.KeyCode.One,
+    ["2"] = Enum.KeyCode.Two,
+    ["3"] = Enum.KeyCode.Three,
+    ["4"] = Enum.KeyCode.Four,
+    ["5"] = Enum.KeyCode.Five,
+    ["6"] = Enum.KeyCode.Six,
+    ["7"] = Enum.KeyCode.Seven,
+    ["8"] = Enum.KeyCode.Eight,
+    ["9"] = Enum.KeyCode.Nine,
+    ["0"] = Enum.KeyCode.Zero
+}
+local kb = Kmg[ks]
+
+local uis = game:GetService("UserInputService") local con = uis.InputBegan:Connect(function(input) if input.KeyCode == kb then
+if not OnCooldown and game:GetService("Players").LocalPlayer.PlayerGui.Chat.Frame.ChatBarParentFrame.Frame.BoxFrame.Frame.TextLabel.Visible then
+cooldownFunction()
+Activated()
+end
+ end end) game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Died:Connect(function() con:Disconnect() end)
+
+game.Players.LocalPlayer.Character.Humanoid.Died:Connect(function()
+died = true
+end)  end
+
+if _G.AboveYou then
+
+local SkillName = "Above You." --[ skills cant have the same name or it will bug, ]
+local CooldownLengh = 10
+local Burning = false -- [ the KJ UFW burning effect ]
+
+local Activated = function()
+
+local Players = game:GetService("Players")
+local localPlayer = Players.LocalPlayer
+
+local function getClosestPlayer()
+    local character = localPlayer.Character or localPlayer.CharacterAdded:Wait()
+    local root = character:WaitForChild("HumanoidRootPart")
+
+    local closestDistance = math.huge
+    local closestPlayer = nil
+
+    for _, player in pairs(Players:GetPlayers()) do
+        if player ~= localPlayer and player.Character then
+            local otherRoot = player.Character:FindFirstChild("HumanoidRootPart")
+            if otherRoot then
+                local distance = (root.Position - otherRoot.Position).Magnitude
+                if distance < closestDistance then
+                    closestDistance = distance
+                    closestPlayer = player
+                end
+            end
+        end
+    end
+
+    return closestPlayer
+end
+
+task.wait(0.1) -- small delay so characters load
+
+local target = getClosestPlayer()
+if target and target.Character then
+    local targetRoot = target.Character:FindFirstChild("HumanoidRootPart")
+    if targetRoot then
+        localPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = targetRoot.CFrame
+        print("Teleported to closest player:", target.Name)
+    end
+end
+    local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+
+local player = Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+local hrp = character:WaitForChild("HumanoidRootPart")
+
+-- Function: find closest player
+local function getClosestPlayer()
+    local closest = nil
+    local shortest = math.huge
+    
+    for _, plr in ipairs(Players:GetPlayers()) do
+        if plr ~= player and plr.Character and plr.Character:FindFirstChild("HumanoidRootPart") then
+            local dist = (plr.Character.HumanoidRootPart.Position - hrp.Position).Magnitude
+            if dist < shortest then
+                closest = plr
+                shortest = dist
+            end
+        end
+    end
+
+    return closest
+end
+
+-- Begin action -------------------------------------------------------
+
+local target = getClosestPlayer()
+if not target then return end
+
+local targetHRP = target.Character.HumanoidRootPart
+
+-- Store original states
+local originalCFrame = hrp.CFrame
+local originalAutoRotate = humanoid.AutoRotate
+
+-- Disable rotation systems
+humanoid.AutoRotate = false
+humanoid.WalkSpeed = 0
+humanoid.JumpPower = 0
+
+-- Face down (180 degrees on X)
+local faceDown = CFrame.Angles(math.rad(0), 0, 180)
+
+-- KEEP POSITION LOCKED FOR 1 SECOND
+local connection
+connection = RunService.RenderStepped:Connect(function()
+    -- 5 studs above closest player
+    local lockPos = targetHRP.Position + Vector3.new(0, 0, 3.75)
+    
+    -- Apply the rotation + locked position
+    hrp.CFrame = CFrame.new(lockPos) * faceDown
+    
+    -- Zero angular rotation
+    hrp.AssemblyAngularVelocity = Vector3.zero
+end)
+game:GetService("Players").LocalPlayer.Character.Communicate:FireServer(unpack({
+    [1] = {
+        ["Tool"] = game:GetService("Players").LocalPlayer.Backpack["Shove"],
+        ["Goal"] = "Console Move"
+    }
+}))
+task.wait(1.2)
+
+-- Restore normal state
+connection:Disconnect()
+humanoid.AutoRotate = originalAutoRotate
+humanoid.WalkSpeed = 16
+humanoid.JumpPower = 50
+hrp.CFrame = originalCFrame
+
+
+end
+
+-- [[ THE CODE, MODIFY IF YOU WANT. ]]
+local SkillTemplate = Instance.new("Tool")
+SkillTemplate.Name = SkillName
+SkillTemplate.RequiresHandle = false
+SkillTemplate.ManualActivationOnly = false
+SkillTemplate.CanBeDropped = false
+SkillTemplate:SetAttribute("Regged", false)
+SkillTemplate:SetAttribute("Skill", true)
+SkillTemplate.Parent = game.Players.LocalPlayer.Backpack
+local ks = "5"
+local OnCooldown = false
+local cooldownFunction = function()
+OnCooldown = true
+local cd = game:GetService("Players").LocalPlayer.PlayerGui.Hotbar.Backpack.LocalScript.Cooldown:Clone()
+for _, slot in pairs(game:GetService("Players").LocalPlayer.PlayerGui.Hotbar.Backpack.Hotbar:GetDescendants()) do
+    if slot:IsA("TextLabel") and slot.Name == "ToolName" and slot.Text == SkillName then
+	ks = "" .. slot.Parent.Parent.Name
+cd.Parent = slot.Parent
+local cdTween = game:GetService("TweenService"):Create(cd, TweenInfo.new(CooldownLengh), {Size = UDim2.new(1, 0, -0.12, 0)})
+cdTween:Play()
+cdTween.Completed:Connect(function()
+OnCooldown = false
+cd:Destroy()
+slot.Parent.BackgroundColor3 = Color3.fromRGB(26, 125, 255)
+game:GetService("TweenService"):Create(slot.Parent, TweenInfo.new(1), {BackgroundColor3 = Color3.fromRGB(31, 31, 31)}):Play()
+end)
+    end
+end
+end
+
+local cd = game:GetService("Players").LocalPlayer.PlayerGui.Hotbar.Backpack.LocalScript.Cooldown:Clone()
+for _, slot in pairs(game:GetService("Players").LocalPlayer.PlayerGui.Hotbar.Backpack.Hotbar:GetDescendants()) do
+    if slot:IsA("TextLabel") and slot.Name == "ToolName" and slot.Text == SkillName then
+	if Burning then
+	local fireLiterally = game:GetService("Players").LocalPlayer.PlayerGui.Hotbar.Backpack.LocalScript.Flipbook:Clone()
+fireLiterally.Parent = slot.Parent
+fireLiterally.LocalScript.Enabled = true
+end
+	slot.Parent.MouseButton1Click:Connect(function()
+	if not OnCooldown then
+cooldownFunction()
+Activated()
+end
+	end)
+	end
+end
+
+local Kmg = {
+    ["1"] = Enum.KeyCode.One,
+    ["2"] = Enum.KeyCode.Two,
+    ["3"] = Enum.KeyCode.Three,
+    ["4"] = Enum.KeyCode.Four,
+    ["5"] = Enum.KeyCode.Five,
+    ["6"] = Enum.KeyCode.Six,
+    ["7"] = Enum.KeyCode.Seven,
+    ["8"] = Enum.KeyCode.Eight,
+    ["9"] = Enum.KeyCode.Nine,
+    ["0"] = Enum.KeyCode.Zero
+}
+local kb = Kmg[ks]
+
+local uis = game:GetService("UserInputService") local con = uis.InputBegan:Connect(function(input) if input.KeyCode == kb then
+if not OnCooldown and game:GetService("Players").LocalPlayer.PlayerGui.Chat.Frame.ChatBarParentFrame.Frame.BoxFrame.Frame.TextLabel.Visible then
+cooldownFunction()
+Activated()
+end
+ end end) game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Died:Connect(function() con:Disconnect() end)
+
+game.Players.LocalPlayer.Character.Humanoid.Died:Connect(function()
+died = true
+end)  end
+
+
+if _G.OrbitalStrike then
+
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+local playerGui = player:WaitForChild("PlayerGui")
+local function waitForGui()
+local bar = playerGui:FindFirstChild("Bar")
+ 	if bar then 
+local magicHealth = bar:FindFirstChild("MagicHealth")
+	if magicHealth then
+local textLabel = magicHealth:FindFirstChild("TextLabel")
+	if textLabel then
+                textLabel.Text = "ORBITAL STRIKE"
+	                playerGui.Bar.MagicHealth.Health.Bar.Bar.ImageColor3 = Color3.fromRGB(180, 60, 0)
+	                game:GetService("TweenService"):Create(playerGui.Bar.MagicHealth.Health.Bar.Bar, TweenInfo.new(5, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut, -1, true), {ImageColor3 = Color3.fromRGB(0, 180, 255)}):Play()
+                playerGui.Bar.MagicHealth.Health.Bar.Bar.Image = "rbxassetid://17136251960"
+                playerGui.Bar.MagicHealth.Health.Glow.Image = "rbxassetid://17136251821"
+	                playerGui.Bar.MagicHealth.TextLabel.Font = Enum.Font.Merriweather
+	                playerGui.Bar.MagicHealth.TextLabel.TextLabel.Font = Enum.Font.Merriweather
+	                playerGui.Bar.MagicHealth.TextLabel.TextSize = 26.1
+	                playerGui.Bar.MagicHealth.TextLabel.TextLabel.TextSize = 26
+            end
+        end
+    end
+end
+
+playerGui.DescendantAdded:Connect(findGuiAndSetText)
+
+waitForGui()
+--<<Ultimate Animation>>--
+
+humanoid.AnimationPlayed:Connect(onAnimationPlayed)
+
+
+local animationId = 12447707844
+
+
+local player = game.Players.LocalPlayer
+
+local character = player.Character or player.CharacterAdded:Wait()
+
+local humanoid = character:WaitForChild("Humanoid")
+
+
+local function onAnimationPlayed(animationTrack)
+
+    if animationTrack.Animation.AnimationId == "rbxassetid://" .. animationId then
+
+local p = game.Players.LocalPlayer
+
+local Humanoid = p.Character:WaitForChild("Humanoid")
+
+
+for _, animTrack in pairs(Humanoid:GetPlayingAnimationTracks()) do
+
+    animTrack:Stop()
+
+end
+
+
+local AnimAnim = Instance.new("Animation")
+
+AnimAnim.AnimationId = "rbxassetid://136370737633649"
+
+local Anim = Humanoid:LoadAnimation(AnimAnim)
+
+
+local startTime = 1
+
+
+Anim:Play()
+
+Anim:AdjustSpeed(0)
+
+Anim.TimePosition = startTime
+
+Anim:AdjustSpeed(1.35) wait(1.45) Anim:Stop()
+game:GetService("Players").LocalPlayer.Character.Communicate:FireServer(unpack({
+    [1] = {
+        ["Tool"] = game:GetService("Players").LocalPlayer.Backpack["Serious Punch"],
+        ["Goal"] = "Console Move"
+    }
+}))
+
+local Players = game:GetService("Players")
+local localPlayer = Players.LocalPlayer
+
+local function getClosestPlayer()
+    local character = localPlayer.Character or localPlayer.CharacterAdded:Wait()
+    local root = character:WaitForChild("HumanoidRootPart")
+
+    local closestDistance = math.huge
+    local closestPlayer = nil
+
+    for _, player in pairs(Players:GetPlayers()) do
+        if player ~= localPlayer and player.Character then
+            local otherRoot = player.Character:FindFirstChild("HumanoidRootPart")
+            if otherRoot then
+                local distance = (root.Position - otherRoot.Position).Magnitude
+                if distance < closestDistance then
+                    closestDistance = distance
+                    closestPlayer = player
+                end
+            end
+        end
+    end
+
+    return closestPlayer
+end
+
+task.wait(0.1) -- small delay so characters load
+
+local target = getClosestPlayer()
+if target and target.Character then
+    local targetRoot = target.Character:FindFirstChild("HumanoidRootPart")
+    if targetRoot then
+        localPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = targetRoot.CFrame
+        print("Teleported to closest player:", target.Name)
+    end
+end
+    local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+
+local player = Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+local hrp = character:WaitForChild("HumanoidRootPart")
+
+-- Function: find closest player
+local function getClosestPlayer()
+    local closest = nil
+    local shortest = math.huge
+    
+    for _, plr in ipairs(Players:GetPlayers()) do
+        if plr ~= player and plr.Character and plr.Character:FindFirstChild("HumanoidRootPart") then
+            local dist = (plr.Character.HumanoidRootPart.Position - hrp.Position).Magnitude
+            if dist < shortest then
+                closest = plr
+                shortest = dist
+            end
+        end
+    end
+
+    return closest
+end
+
+-- Begin action -------------------------------------------------------
+
+local target = getClosestPlayer()
+if not target then return end
+
+local targetHRP = target.Character.HumanoidRootPart
+
+-- Store original states
+local originalCFrame = hrp.CFrame
+local originalAutoRotate = humanoid.AutoRotate
+
+-- Disable rotation systems
+humanoid.AutoRotate = false
+humanoid.WalkSpeed = 0
+humanoid.JumpPower = 0
+
+-- Face down (180 degrees on X)
+local faceDown = CFrame.Angles(math.rad(-90), 0, 0)
+
+-- KEEP POSITION LOCKED FOR 1 SECOND
+local connection
+connection = RunService.RenderStepped:Connect(function()
+    -- 5 studs above closest player
+    local lockPos = targetHRP.Position + Vector3.new(0, 50, 0)
+    
+    -- Apply the rotation + locked position
+    hrp.CFrame = CFrame.new(lockPos) * faceDown
+    
+    -- Zero angular rotation
+    hrp.AssemblyAngularVelocity = Vector3.zero
+end)
+
+-- Get the player's camera
+local player = game.Players.LocalPlayer
+local camera = game.Workspace.CurrentCamera
+
+-- Set the camera's CameraType to Scriptable (this "freezes" the camera)
+camera.CameraType = Enum.CameraType.Scriptable
+
+-- Get the player's position
+local playerPosition = player.Character.HumanoidRootPart.Position
+
+-- Set the camera's position above the player (e.g., 50 units above)
+local freezePosition = playerPosition + Vector3.new(90, 150, -100) -- x, y, z coordinates, y is higher than player's position
+
+-- Set the camera's CFrame (position + orientation)
+camera.CFrame = CFrame.new(freezePosition)
+
+-- Optional: Make the camera look at the player (or another point if desired)
+camera.CFrame = CFrame.new(freezePosition, playerPosition)
+
+
+task.wait(6.5)
+Players = game:GetService("Players")
+ local speaker = Players.LocalPlayer
+ workspace.CurrentCamera:remove()
+     wait(.1)
+     workspace.CurrentCamera.CameraSubject = speaker.Character:FindFirstChildWhichIsA('Humanoid')
+     workspace.CurrentCamera.CameraType = "Custom"
+     speaker.CameraMinZoomDistance = 0.5
+     speaker.CameraMaxZoomDistance = 400
+     speaker.CameraMode = "Classic"
+     speaker.Character.Head.Anchored = false
+task.wait(0)
+task.wait(0)
+-- Restore normal state
+connection:Disconnect()
+humanoid.AutoRotate = originalAutoRotate
+humanoid.WalkSpeed = 16
+humanoid.JumpPower = 50
+hrp.CFrame = originalCFrame
+    end
+
+end
+
+--<<End of the Ultimate animation>>--
+
+--[[Move 1 ULT]]
+humanoid.AnimationPlayed:Connect(onAnimationPlayed)
+
+local animationId = 12983333733
+
+
+local player = game.Players.LocalPlayer
+
+local character = player.Character or player.CharacterAdded:Wait()
+
+local humanoid = character:WaitForChild("Humanoid")
+
+
+local function onAnimationPlayed(animationTrack)
+
+    if animationTrack.Animation.AnimationId == "rbxassetid://" .. animationId then
+
+
+local p = game.Players.LocalPlayer
+
+local Humanoid = p.Character:WaitForChild("Humanoid")
+
+
+for _, animTrack in pairs(Humanoid:GetPlayingAnimationTracks()) do
+
+    animTrack:Stop()
+
+end
+
+
+local AnimAnim = Instance.new("Animation")
+
+AnimAnim.AnimationId = "rbxassetid://79761806706382"
+
+local Anim = Humanoid:LoadAnimation(AnimAnim)
+
+
+local startTime = 0
+
+
+Anim:Play()
+
+Anim:AdjustSpeed(0)
+
+Anim.TimePosition = startTime
+
+Anim:AdjustSpeed(0.575)
+wait(0.1)
+
+Players = game:GetService("Players")
+ local speaker = Players.LocalPlayer
+ workspace.CurrentCamera:remove()
+     wait(.1)
+     workspace.CurrentCamera.CameraSubject = speaker.Character:FindFirstChildWhichIsA('Humanoid')
+     workspace.CurrentCamera.CameraType = "Custom"
+     speaker.CameraMinZoomDistance = 0.5
+     speaker.CameraMaxZoomDistance = 400
+     speaker.CameraMode = "Classic"
+     speaker.Character.Head.Anchored = false
+task.wait(0)
+-- Restore normal state
+connection:Disconnect()
+humanoid.AutoRotate = originalAutoRotate
+humanoid.WalkSpeed = 16
+humanoid.JumpPower = 50
+hrp.CFrame = originalCFrame
+
+
+
+    end
+
+end
+
+--[[END OF MOVE 1 ULT ANIM]]
+--[[Move 1 ULT]]
+humanoid.AnimationPlayed:Connect(onAnimationPlayed)
+
+local animationId = 12983333733
+
+
+local player = game.Players.LocalPlayer
+
+local character = player.Character or player.CharacterAdded:Wait()
+
+local humanoid = character:WaitForChild("Humanoid")
+
+
+local function onAnimationPlayed(animationTrack)
+
+    if animationTrack.Animation.AnimationId == "rbxassetid://" .. animationId then
+
+
+local p = game.Players.LocalPlayer
+
+local Humanoid = p.Character:WaitForChild("Humanoid")
+
+
+for _, animTrack in pairs(Humanoid:GetPlayingAnimationTracks()) do
+
+    animTrack:Stop()
+
+end
+
+
+local AnimAnim = Instance.new("Animation")
+
+AnimAnim.AnimationId = "rbxassetid://79761806706382"
+
+local Anim = Humanoid:LoadAnimation(AnimAnim)
+
+
+local startTime = 0
+
+
+Anim:Play()
+
+Anim:AdjustSpeed(0)
+
+Anim.TimePosition = startTime
+
+Anim:AdjustSpeed(0.575)
+
+
+    end
+
+end
+
+--[[END OF MOVE 1 ULT ANIM]]
+ end
+
+
+
+if _G.AtomicBomb then
+
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+local playerGui = player:WaitForChild("PlayerGui")
+local function waitForGui()
+local bar = playerGui:FindFirstChild("Bar")
+ 	if bar then 
+local magicHealth = bar:FindFirstChild("MagicHealth")
+	if magicHealth then
+local textLabel = magicHealth:FindFirstChild("TextLabel")
+	if textLabel then
+                textLabel.Text = "ATOMIC BOMB"
+	                playerGui.Bar.MagicHealth.Health.Bar.Bar.ImageColor3 = Color3.fromRGB(0, 105, 186)
+	                game:GetService("TweenService"):Create(playerGui.Bar.MagicHealth.Health.Bar.Bar, TweenInfo.new(5, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut, -1, true), {ImageColor3 = Color3.fromRGB(140, 0, 96)}):Play()
+                playerGui.Bar.MagicHealth.Health.Bar.Bar.Image = "rbxassetid://17136251960"
+                playerGui.Bar.MagicHealth.Health.Glow.Image = "rbxassetid://17136251821"
+	                playerGui.Bar.MagicHealth.TextLabel.Font = Enum.Font.Merriweather
+	                playerGui.Bar.MagicHealth.TextLabel.TextLabel.Font = Enum.Font.Merriweather
+	                playerGui.Bar.MagicHealth.TextLabel.TextSize = 26
+	                playerGui.Bar.MagicHealth.TextLabel.TextLabel.TextSize = 26
+            end
+        end
+    end
+end
+
+playerGui.DescendantAdded:Connect(findGuiAndSetText)
+
+waitForGui()
+--<<Ultimate Animation>>--
+
+humanoid.AnimationPlayed:Connect(onAnimationPlayed)
+
+
+local animationId = 12447707844
+
+
+local player = game.Players.LocalPlayer
+
+local character = player.Character or player.CharacterAdded:Wait()
+
+local humanoid = character:WaitForChild("Humanoid")
+
+
+local function onAnimationPlayed(animationTrack)
+
+    if animationTrack.Animation.AnimationId == "rbxassetid://" .. animationId then
+
+local p = game.Players.LocalPlayer
+
+local Humanoid = p.Character:WaitForChild("Humanoid")
+
+
+for _, animTrack in pairs(Humanoid:GetPlayingAnimationTracks()) do
+
+    animTrack:Stop()
+
+end
+
+
+local AnimAnim = Instance.new("Animation")
+
+AnimAnim.AnimationId = "rbxassetid://116753755471636"
+
+local Anim = Humanoid:LoadAnimation(AnimAnim)
+
+
+local startTime = 2
+
+
+Anim:Play()
+
+Anim:AdjustSpeed(0)
+
+Anim.TimePosition = startTime
+
+Anim:AdjustSpeed(1.35) wait(1.5)   game:GetService("Players").LocalPlayer.Character.Communicate:FireServer(unpack({
+    [1] = {
+        ["Tool"] = game:GetService("Players").LocalPlayer.Backpack["Table Flip"],
+        ["Goal"] = "Console Move"
+    }
+}))
+local Players = game:GetService("Players")
+local localPlayer = Players.LocalPlayer
+
+local function getClosestPlayer()
+    local character = localPlayer.Character or localPlayer.CharacterAdded:Wait()
+    local root = character:WaitForChild("HumanoidRootPart")
+
+    local closestDistance = math.huge
+    local closestPlayer = nil
+
+    for _, player in pairs(Players:GetPlayers()) do
+        if player ~= localPlayer and player.Character then
+            local otherRoot = player.Character:FindFirstChild("HumanoidRootPart")
+            if otherRoot then
+                local distance = (root.Position - otherRoot.Position).Magnitude
+                if distance < closestDistance then
+                    closestDistance = distance
+                    closestPlayer = player
+                end
+            end
+        end
+    end
+
+    return closestPlayer
+end
+
+task.wait(1) -- small delay so characters load
+
+local target = getClosestPlayer()
+if target and target.Character then
+    local targetRoot = target.Character:FindFirstChild("HumanoidRootPart")
+    if targetRoot then
+        localPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = targetRoot.CFrame
+        print("Teleported to closest player:", target.Name)
+    end
+end
+    local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+
+local player = Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+local hrp = character:WaitForChild("HumanoidRootPart")
+
+-- Function: find closest player
+local function getClosestPlayer()
+    local closest = nil
+    local shortest = math.huge
+    
+    for _, plr in ipairs(Players:GetPlayers()) do
+        if plr ~= player and plr.Character and plr.Character:FindFirstChild("HumanoidRootPart") then
+            local dist = (plr.Character.HumanoidRootPart.Position - hrp.Position).Magnitude
+            if dist < shortest then
+                closest = plr
+                shortest = dist
+            end
+        end
+    end
+
+    return closest
+end
+
+-- Begin action -------------------------------------------------------
+
+local target = getClosestPlayer()
+if not target then return end
+
+local targetHRP = target.Character.HumanoidRootPart
+
+-- Store original states
+local originalCFrame = hrp.CFrame
+local originalAutoRotate = humanoid.AutoRotate
+
+-- Disable rotation systems
+humanoid.AutoRotate = false
+humanoid.WalkSpeed = 0
+humanoid.JumpPower = 0
+
+-- Face down (180 degrees on X)
 local faceDown = CFrame.Angles(math.rad(-90), 0, 0)
 
 -- KEEP POSITION LOCKED FOR 1 SECOND
