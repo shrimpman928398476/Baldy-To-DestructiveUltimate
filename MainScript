@@ -837,7 +837,7 @@ end)  end
 
 if _G.AboveYou then
 
-local SkillName = "Above You." --[ skills cant have the same name or it will bug, ]
+local SkillName = "Behind You." --[ skills cant have the same name or it will bug, ]
 local CooldownLengh = 10
 local Burning = false -- [ the KJ UFW burning effect ]
 
